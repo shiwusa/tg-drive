@@ -1,0 +1,15 @@
+<p-confirmDialog header="Are you sure?"></p-confirmDialog>
+<div class="app-wrapper w-12 pb-4">
+  <ng-particles id="tsparticles" [options]="particlesOptions" [particlesInit]="particlesInit"
+    (particlesLoaded)="particlesLoaded($event)">
+  </ng-particles>
+  <div class="app-content w-10 xl:w-8 mx-auto pb-4 px-4 flex flex-column">
+    <div class="app-container">
+      <app-home *ngIf="loggedIn"></app-home>
+      <app-landing *ngIf="!loggedIn"></app-landing>
+    </div>
+    <footer>
+      © TgDrive by Matthew Kirik and Ivan Baturkin, 2023
+    </footer>
+  </div>
+</div>

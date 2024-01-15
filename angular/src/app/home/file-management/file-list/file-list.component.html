@@ -1,0 +1,37 @@
+<p-table [value]="files" [loading]="loading">
+  <ng-template pTemplate="caption">
+    <div *ngIf="!currentDirectory" class="flex align-items-center justify-content-center">
+      <div class="flex align-items-center justify-content-center" style="height:100px">No
+        directory selected</div>
+    </div>
+    <div *ngIf="currentDirectory" class="flex align-items-center">
+      <div class="directory-name"><i class="pi pi-folder-open mr-2"
+          style="font-size: 1.5rem"></i>{{currentDirectory.name}}</div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr *ngIf="currentDirectory">
+      <th>Filename</th>
+      <th>Description</th>
+      <th>Direct link</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-file>
+    <tr>
+      <td>{{file.data.name}}</td>
+      <td>{{file.data.description}}</td>
+      <td>
+        <a target="_blank" rel="noopener noreferrer" [attr.href]="file.link">{{file.link}}</a>
+      </td>
+      <td>
+        <button type="button" pButton icon="pi pi-external-link" class="p-button-success p-button-text" (click)="sendFile(file)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-file>
+    <tr *ngIf="currentDirectory">
+      <td colspan="4" >This folder does not contain any files.</td>
+    </tr>
+  </ng-template>
+</p-table>

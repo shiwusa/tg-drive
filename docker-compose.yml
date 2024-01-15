@@ -1,0 +1,68 @@
+version: '3.4'
+
+services:
+  rabbitmq-bus:
+    image: rabbitmq:3.10.7-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "25672:25672"
+
+  mysql-db:
+    image: mysql:8.0.35
+    environment:
+      - MYSQL_ROOT_PASSWORD=qwerty123!
+    ports:
+      - "3306:3306"
+    # volumes:
+    #   - mysqldb:/var/lib/mysql
+
+  tg-drive-host:
+    build:
+      context: ./
+      dockerfile: aspnet-core/ConsoleHost/Dockerfile
+    environment:
+      # - TGDRIVE_MYSQL_CONNECTION_STRING=Server=mysql-db;Database=tgdrivedb;Uid=root;Pwd=qwerty123!
+      - TGDRIVE_MYSQL_CONNECTION_STRING=server=mysql-db;user=root;password=qwerty123!;database=tgdrivedb
+      - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
+      - TGDRIVE_BOT_TOKEN=6601174302:AAH1drTsxUXuRoZ1PAmO4hIT68zER4rt3RM
+    depends_on:
+      - rabbitmq-bus
+      - mysql-db
+
+  tg-drive-webapi:
+    build:
+      context: ./
+      dockerfile: aspnet-core/ServicesWebApi/Dockerfile
+    environment:
+      # - TGDRIVE_MYSQL_CONNECTION_STRING=Server=mysql-db;Database=tgdrivedb;Uid=root;Pwd=qwerty123!
+      - TGDRIVE_MYSQL_CONNECTION_STRING=server=mysql-db;user=root;password=qwerty123!;database=tgdrivedb
+      - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
+      - TGDRIVE_BOT_TOKEN=6601174302:AAH1drTsxUXuRoZ1PAmO4hIT68zER4rt3RM
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=awesomepass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/tgdrive.pfx
+    ports:
+      - "5050:5050"
+      - "5051:5051"
+    volumes:
+      - /usr/local/share/ca-certificates/aspnet:/https/
+    depends_on:
+      - rabbitmq-bus
+      - mysql-db
+
+  angular:
+    build:
+      context: ./
+      dockerfile: angular/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - tg-drive-host
+      - tg-drive-webapi
+
+# volumes:
+#   mysqldb:

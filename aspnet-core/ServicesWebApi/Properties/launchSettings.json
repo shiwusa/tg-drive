@@ -1,0 +1,37 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:12784",
+      "sslPort": 44318
+    }
+  },
+  "profiles": {
+    "ServicesWebApi": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://0.0.0.0:5050;http://0.0.0.0:5051",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "TGDRIVE_LITEDB_CONNECTION_STRING": "filename=C:\\Users\\Matthew\\Documents\\litedb\\tgdrive.db;Password=1234",
+        "TGDRIVE_MYSQL_CONNECTION_STRING": "server=localhost;user=root;password=1234567890;database=tgdrivedb",
+        "TGDRIVE_BOT_TOKEN": "5254015791:AAHukVSKgMz-rBi798t_nY4yCzDWaZb9pKc"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "TGDRIVE_LITEDB_CONNECTION_STRING": "filename=C:\\Users\\Matthew\\Documents\\litedb\\tgdrive.db;Password=1234",
+        "TGDRIVE_MYSQL_CONNECTION_STRING": "server=localhost;user=root;password=1234567890;database=tgdrivedb",
+        "TGDRIVE_BOT_TOKEN": "5254015791:AAHukVSKgMz-rBi798t_nY4yCzDWaZb9pKc"
+      }
+    }
+  }
+}

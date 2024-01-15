@@ -1,0 +1,8 @@
+<div class="flex">
+  <div class="w-4 tree-container">
+    <app-directory-tree [(selectedDirectory)]="selectedDirectory"></app-directory-tree>
+  </div>
+  <div class="w-8">
+    <app-file-list [currentDirectory]="selectedDirectory"></app-file-list>
+  </div>
+</div>

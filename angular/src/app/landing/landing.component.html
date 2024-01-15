@@ -1,0 +1,30 @@
+<div class="relative" style="min-height: 90vh;">
+  <div class="content-underlay" style="width: 100%; height: 100%">
+    <div class="flex flex-column pt-4 relative overflow-hidden">
+      <div class="app-caption">
+        <span #caption>
+          <img src="assets/logo.png" alt="TgDrive Logo" class="logo">
+          Tg Drive
+        </span>
+      </div>
+      <div class="app-overview" [ngStyle]="{'width.px': caption.offsetWidth - 80}">
+        TgDrive is a virtual file-system for your Telegram documents and messages.
+        It allows you to view, edit, and manage your files and messages in one place.
+      </div>
+      <div class="login-container flex align-items-center justify-content-center flex-column">
+        <div class="app-details">
+          Store all of your important documents in one secure place on Telegram.
+        </div>
+        <div class="widget-container flex align-items-center justify-content-center">
+          <app-telegram-login-widget></app-telegram-login-widget>
+        </div>
+        <div class="app-details">
+          Just log in with your Telegram account and start using it today!
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="background">
+    <img src="assets/folder.png" alt="Folder" class="background-folder">
+  </div>
+</div>

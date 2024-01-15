@@ -1,0 +1,12 @@
+<p-tree [value]="root" (onNodeExpand)="onNodeExpand($event?.node)" [loading]="loading" scrollHeight="70vh"
+  selectionMode="single" [(selection)]="selectedDirectoryNode" (selectionChange)="onSelectionChange($event)" [contextMenu]="cm">
+  <ng-template let-node pTemplate="default">
+    <b *ngIf="!node.data.adding">{{node.label}}</b>
+    <div *ngIf="node.data.adding" class="p-inputgroup">
+      <input type="text" pInputText placeholder="New directory name" [(ngModel)]="node.data.dto.name">
+      <button type="button" pButton icon="pi pi-check" class="p-button-success p-button-text" (click)="approveAdding(node)"></button>
+      <button type="button" pButton icon="pi pi-times" class="p-button-danger p-button-text" (click)="cancelAdding()"></button>
+    </div>
+  </ng-template>
+</p-tree>
+<p-contextMenu #cm [model]="directoryMenu"></p-contextMenu>
