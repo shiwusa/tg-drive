@@ -49,6 +49,7 @@ services:
       - "5051:5051"
     volumes:
       - /usr/local/share/ca-certificates/aspnet:/https/
+      - ${USERPROFILE}/.aspnet/https:/https/
     depends_on:
       - rabbitmq-bus
       - mysql-db

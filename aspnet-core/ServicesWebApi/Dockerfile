@@ -14,9 +14,6 @@ RUN dotnet build --no-restore -c Release -o /app
 
 FROM build AS publish
 RUN dotnet publish --no-restore -c Release -o /app
-RUN dotnet dev-certs https --clean
-RUN dotnet dev-certs https --trust
-RUN dotnet dev-certs https --check
 
 FROM base AS final
 WORKDIR /app
