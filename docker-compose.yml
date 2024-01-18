@@ -22,8 +22,8 @@ services:
 
   tg-drive-host:
     build:
-      context: ./
-      dockerfile: aspnet-core/ConsoleHost/Dockerfile
+      context: aspnet-core
+      dockerfile: ConsoleHost/Dockerfile
     environment:
       - TGDRIVE_MYSQL_CONNECTION_STRING=server=mysql-db;user=root;password=qwerty123!;database=tgdrivedb
       - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
@@ -34,8 +34,8 @@ services:
 
   tg-drive-webapi:
     build:
-      context: ./
-      dockerfile: aspnet-core/ServicesWebApi/Dockerfile
+      context: aspnet-core
+      dockerfile: ServicesWebApi/Dockerfile
     environment:
       - TGDRIVE_MYSQL_CONNECTION_STRING=server=mysql-db;user=root;password=qwerty123!;database=tgdrivedb
       - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
@@ -53,8 +53,7 @@ services:
 
   angular:
     build:
-      context: ./
-      dockerfile: angular/Dockerfile
+      context: angular
     ports:
       - "80:80"
       - "443:443"
