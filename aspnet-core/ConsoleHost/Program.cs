@@ -66,7 +66,7 @@ using var host = Host.CreateDefaultBuilder(args)
                 cfg.ConfigureEndpoints(context);
             });
         });
-        
+
         services
             .AddTgDriveContextPool(mySqlConnectionStr)
             .AddMapper()
@@ -82,7 +82,7 @@ using var host = Host.CreateDefaultBuilder(args)
         var bot = new TelegramBotClient(tgBotToken);
         services
             .AddSingleton<ITelegramBotClient>(bot)
-            .AddSingleton<IBotClient, TgBotClient>();
+            .AddSingleton<ITgDriveBotClient, TgDriveBotClient>();
 
         services.AddSingleton<IRedirectHandler, RedirectHandler>();
         services
@@ -90,6 +90,7 @@ using var host = Host.CreateDefaultBuilder(args)
             .AddSingleton<SettingsMenu>()
             .AddSingleton<DirectoryMenu>()
             .AddSingleton<FileMenu>();
+
         services.AddSingleton<BotFrontend>();
     })
     .Build();

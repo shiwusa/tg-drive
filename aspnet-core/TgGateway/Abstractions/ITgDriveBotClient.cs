@@ -2,7 +2,7 @@
 
 namespace TgGateway.Abstractions;
 
-public interface IBotClient
+public interface ITgDriveBotClient
 {
     void StartReceiving(IUpdateHandler handler);
     Task<long> SendMenu(long chatId, MenuData data);

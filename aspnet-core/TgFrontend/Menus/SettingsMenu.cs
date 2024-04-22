@@ -14,7 +14,7 @@ public class SettingsMenu : MenuBase
     private readonly IRedirectHandler _redirectHandler;
 
     public SettingsMenu(
-        IBotClient botClient,
+        ITgDriveBotClient botClient,
         IUserService userService,
         IRedirectHandler redirectHandler)
         : base(botClient)
