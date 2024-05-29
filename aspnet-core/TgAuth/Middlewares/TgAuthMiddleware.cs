@@ -73,11 +73,13 @@ public class TgAuthMiddleware
                 return (parts[0], parts[1]);
             })
             .ToDictionary(x => x.Item1, x => x.Item2);
+
+
         return new TelegramAuthData
         {
             Id = long.Parse(pairs["id"]),
             FirstName = pairs["first_name"],
-            LastName = pairs["last_name"],
+            LastName = pairs.GetValueOrDefault("last_name"),
             Username = pairs["username"],
             PhotoUrl = pairs["photo_url"],
         };
