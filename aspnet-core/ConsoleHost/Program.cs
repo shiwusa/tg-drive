@@ -83,7 +83,7 @@ using var host = Host.CreateDefaultBuilder(args)
         services
             .AddSingleton<ITelegramBotClient>(bot)
             .AddSingleton<IBotClient, TgBotClient>();
-
+        
         services.AddSingleton<IRedirectHandler, RedirectHandler>();
         services
             .AddSingleton<RootMenu>()
