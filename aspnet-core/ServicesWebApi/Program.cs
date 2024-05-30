@@ -39,7 +39,7 @@ builder.Services.AddDirectoryService();
 builder.Services.AddScoped<ITgFileService, TgFileServiceClient>();
 
 string cors_allowTgDrive = "allowTgDrive";
-string cors_allowTgDriveDev = "allowTgDriveDev";
+// string cors_allowTgDriveDev = "allowTgDriveDev";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(
@@ -50,16 +50,6 @@ builder.Services.AddCors(options =>
             policy.AllowAnyHeader();
             policy.AllowAnyMethod();
             policy.WithOrigins("https://tgdrive.com");
-        });
-        
-    options.AddPolicy(
-        name: cors_allowTgDriveDev,
-        policy =>
-        {
-            policy.AllowCredentials();
-            policy.AllowAnyHeader();
-            policy.AllowAnyMethod();
-            policy.WithOrigins("https://127.0.0.1");
         });
 });
 

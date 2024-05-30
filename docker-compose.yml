@@ -10,6 +10,10 @@ services:
       - "5672:5672"
       - "15672:15672"
       - "25672:25672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      timeout: 10s
+      retries: 10
 
   mysql-db:
     image: mysql:8.0.35
@@ -19,6 +23,10 @@ services:
       - "3306:3306"
     volumes:
       - mysqldb:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
 
   tg-drive-host:
     build:
@@ -29,8 +37,10 @@ services:
       - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
       - TGDRIVE_BOT_TOKEN=6601174302:AAH1drTsxUXuRoZ1PAmO4hIT68zER4rt3RM
     depends_on:
-      - rabbitmq-bus
-      - mysql-db
+      rabbitmq-bus:
+        condition: service_healthy
+      mysql-db:
+        condition: service_healthy
 
   tg-drive-webapi:
     build:
@@ -48,8 +58,10 @@ services:
     volumes:
       - ${TGDRIVE_CERT_PATH}:/https/
     depends_on:
-      - rabbitmq-bus
-      - mysql-db
+      rabbitmq-bus:
+        condition: service_healthy
+      mysql-db:
+        condition: service_healthy
 
   angular:
     build:
