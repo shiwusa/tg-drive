@@ -10,6 +10,10 @@ services:
       - "5672:5672"
       - "15672:15672"
       - "25672:25672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      timeout: 10s
+      retries: 10
 
   mysql-db:
     image: mysql:8.0.35
@@ -17,28 +21,32 @@ services:
       - MYSQL_ROOT_PASSWORD=qwerty123!
     ports:
       - "3306:3306"
-    # volumes:
-    #   - mysqldb:/var/lib/mysql
+    volumes:
+      - mysqldb:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
 
   tg-drive-host:
     build:
-      context: ./
-      dockerfile: aspnet-core/ConsoleHost/Dockerfile
+      context: aspnet-core
+      dockerfile: ConsoleHost/Dockerfile
     environment:
-      # - TGDRIVE_MYSQL_CONNECTION_STRING=Server=mysql-db;Database=tgdrivedb;Uid=root;Pwd=qwerty123!
       - TGDRIVE_MYSQL_CONNECTION_STRING=server=mysql-db;user=root;password=qwerty123!;database=tgdrivedb
       - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
       - TGDRIVE_BOT_TOKEN=6601174302:AAH1drTsxUXuRoZ1PAmO4hIT68zER4rt3RM
     depends_on:
-      - rabbitmq-bus
-      - mysql-db
+      rabbitmq-bus:
+        condition: service_healthy
+      mysql-db:
+        condition: service_healthy
 
   tg-drive-webapi:
     build:
-      context: ./
-      dockerfile: aspnet-core/ServicesWebApi/Dockerfile
+      context: aspnet-core
+      dockerfile: ServicesWebApi/Dockerfile
     environment:
-      # - TGDRIVE_MYSQL_CONNECTION_STRING=Server=mysql-db;Database=tgdrivedb;Uid=root;Pwd=qwerty123!
       - TGDRIVE_MYSQL_CONNECTION_STRING=server=mysql-db;user=root;password=qwerty123!;database=tgdrivedb
       - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
       - TGDRIVE_BOT_TOKEN=6601174302:AAH1drTsxUXuRoZ1PAmO4hIT68zER4rt3RM
@@ -48,15 +56,16 @@ services:
       - "5050:5050"
       - "5051:5051"
     volumes:
-      - /usr/local/share/ca-certificates/aspnet:/https/
+      - ${TGDRIVE_CERT_PATH}:/https/
     depends_on:
-      - rabbitmq-bus
-      - mysql-db
+      rabbitmq-bus:
+        condition: service_healthy
+      mysql-db:
+        condition: service_healthy
 
   angular:
     build:
-      context: ./
-      dockerfile: angular/Dockerfile
+      context: angular
     ports:
       - "80:80"
       - "443:443"
@@ -64,5 +73,5 @@ services:
       - tg-drive-host
       - tg-drive-webapi
 
-# volumes:
-#   mysqldb:
+volumes:
+  mysqldb:

@@ -9,9 +9,9 @@ namespace TgFrontend;
 
 public abstract class MenuBase
 {
-    protected readonly IBotClient _botClient;
+    protected readonly ITgDriveBotClient _botClient;
 
-    protected MenuBase(IBotClient botClient)
+    protected MenuBase(ITgDriveBotClient botClient)
     {
         _botClient = botClient;
     }

@@ -14,7 +14,7 @@ public class RootMenu : MenuBase
     private readonly IRedirectHandler _redirectHandler;
 
     public RootMenu(
-        IBotClient botClient,
+        ITgDriveBotClient botClient,
         IDirectoryService directoryService,
         IRedirectHandler redirectHandler)
         : base(botClient)

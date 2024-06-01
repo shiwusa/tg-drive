@@ -7,24 +7,25 @@ namespace TgFrontend;
 
 public class BotFrontend : IUpdateHandler
 {
-    private readonly IBotClient _botClient;
+    private readonly ITgDriveBotClient _botClient;
     private readonly RootMenu _rootMenu;
     private readonly SettingsMenu _settingsMenu;
     private readonly IEnumerable<MenuBase> _menus;
 
     public BotFrontend(
-        IBotClient botClient,
+        ITgDriveBotClient botClient,
         IRedirectHandler redirectHandler,
         RootMenu rootMenu,
-        DirectoryMenu directoryMenu,
         SettingsMenu settingsMenu,
-        FileMenu fileMenu
-    )
+        DirectoryMenu directoryMenu,
+        FileMenu fileMenu)
     {
         _botClient = botClient;
         _rootMenu = rootMenu;
         _settingsMenu = settingsMenu;
-        _menus = new MenuBase[] {directoryMenu, rootMenu, directoryMenu, fileMenu, _settingsMenu};
+
+        // TODO: investigate why directoryMenu appears twice
+        _menus = new MenuBase[] { directoryMenu, rootMenu, directoryMenu, fileMenu, _settingsMenu };
         redirectHandler.Initialize(_botClient, _menus);
     }
 

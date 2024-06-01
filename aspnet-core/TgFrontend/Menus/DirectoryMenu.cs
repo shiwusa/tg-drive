@@ -16,7 +16,7 @@ public class DirectoryMenu : MenuBase
     private readonly IRedirectHandler _redirectHandler;
 
     public DirectoryMenu(
-        IBotClient botClient,
+        ITgDriveBotClient botClient,
         IDirectoryService directoryService,
         IFileService fileService,
         ITgFileService tgFileService,

@@ -7,13 +7,13 @@ namespace TgFrontend;
 
 public class UpdateHandler
 {
-    private readonly IBotClient _botClient;
+    private readonly ITgDriveBotClient _botClient;
     private readonly RootMenu _rootMenu;
     private readonly SettingsMenu _settingsMenu;
     private readonly IEnumerable<MenuBase> _menus;
 
     public UpdateHandler(
-        IBotClient botClient,
+        ITgDriveBotClient botClient,
         IRedirectHandler redirectHandler,
         RootMenu rootMenu,
         DirectoryMenu directoryMenu,

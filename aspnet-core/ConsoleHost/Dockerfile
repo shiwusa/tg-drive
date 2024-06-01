@@ -3,8 +3,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ./aspnet-core ./aspnet-core
-WORKDIR ./aspnet-core
+COPY . .
 WORKDIR ./ConsoleHost
 RUN dotnet restore -nowarn:msb3202,nu1503
 RUN dotnet build --no-restore -c Release -o /app

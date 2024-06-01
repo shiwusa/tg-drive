@@ -9,12 +9,12 @@ public class TgFileService : ITgFileService
 {
     private readonly IFileService _fileService;
     private readonly IUserService _userService;
-    private readonly IBotClient _botClient;
+    private readonly ITgDriveBotClient _botClient;
 
     public TgFileService(
         IFileService fileService,
         IUserService userService,
-        IBotClient botClient)
+        ITgDriveBotClient botClient)
     {
         _fileService = fileService;
         _userService = userService;

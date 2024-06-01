@@ -6,9 +6,9 @@ namespace TgFrontend;
 public class RedirectHandler : IRedirectHandler
 {
     private IEnumerable<MenuBase> _menus = new List<MenuBase>();
-    private IBotClient _bot;
+    private ITgDriveBotClient _bot;
 
-    public void Initialize(IBotClient bot, IEnumerable<MenuBase> menus)
+    public void Initialize(ITgDriveBotClient bot, IEnumerable<MenuBase> menus)
     {
         _bot = bot;
         _menus = menus;

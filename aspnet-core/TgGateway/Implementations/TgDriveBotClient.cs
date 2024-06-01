@@ -9,7 +9,7 @@ using IUpdateHandler = TgGateway.Abstractions.IUpdateHandler;
 
 namespace TgGateway.Implementations;
 
-public class TgBotClient : IBotClient
+public class TgDriveBotClient : ITgDriveBotClient
 {
     private readonly IMessageStorage _storage;
     private readonly ITelegramBotClient _tgBotClient;
@@ -21,7 +21,7 @@ public class TgBotClient : IBotClient
 
     private UpdateParser? _updateParser;
 
-    public TgBotClient(ITelegramBotClient tgBotClient, IMessageStorage storage)
+    public TgDriveBotClient(ITelegramBotClient tgBotClient, IMessageStorage storage)
     {
         _tgBotClient = tgBotClient;
         _storage = storage;
@@ -246,7 +246,6 @@ public class TgBotClient : IBotClient
 
         await _storage.DeleteMessage(chatId, messageId);
     }
-
 
     private async void TryClearChatExceptMenu(long chatId)
     {

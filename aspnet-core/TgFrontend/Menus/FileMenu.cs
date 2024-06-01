@@ -19,7 +19,7 @@ public class FileMenu : MenuBase
         IFileService fileService,
         ITgFileService tgFileService,
         IRedirectHandler redirectHandler,
-        IBotClient botClient)
+        ITgDriveBotClient botClient)
         : base(botClient)
     {
         _directoryService = directoryService;

@@ -4,18 +4,17 @@ using Telegram.Bot.Types.Enums;
 using TgGateway.Abstractions;
 using TgGateway.Models;
 using TgGateway.Models.Updates;
-using IUpdateHandler = Telegram.Bot.Polling.IUpdateHandler;
 
 namespace TgGateway.Implementations;
 
-public class UpdateParser : IUpdateHandler
+public class UpdateParser : IUpdateParser
 {
     private readonly IMessageStorage _storage;
-    private readonly Abstractions.IUpdateHandler _updateHandler;
+    private readonly IUpdateHandler _updateHandler;
 
     public UpdateParser(
         IMessageStorage storage,
-        Abstractions.IUpdateHandler updateHandler)
+        IUpdateHandler updateHandler)
     {
         _storage = storage;
         _updateHandler = updateHandler;
