@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace TgAuth.Utils;
+namespace TgDrive.Web.Utils;
 
 public static class HashHelper
 {

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DriveServices\DriveServices.csproj" />
+    <ProjectReference Include="..\DriveServices\TgDrive.FileSystem.Application.csproj" />
     <ProjectReference Include="..\EfRepositories\EfRepositories.csproj" />
     <ProjectReference Include="..\MappingConfig\MappingConfig.csproj" />
   </ItemGroup>

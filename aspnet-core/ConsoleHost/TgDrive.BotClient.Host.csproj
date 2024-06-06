@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -21,13 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DriveServices\DriveServices.csproj" />
+    <ProjectReference Include="..\DriveServices\TgDrive.FileSystem.Application.csproj" />
     <ProjectReference Include="..\EfRepositories\EfRepositories.csproj" />
     <ProjectReference Include="..\MappingConfig\MappingConfig.csproj" />
     <ProjectReference Include="..\MySqlMigrations\MySqlMigrations.csproj" />
-    <ProjectReference Include="..\ServicesExtensions\ServicesExtensions.csproj" />
+    <ProjectReference Include="..\ServicesExtensions\TgDrive.ServicesConfiguration.csproj" />
     <ProjectReference Include="..\TgChatsStorage\TgChatsStorage.csproj" />
-    <ProjectReference Include="..\TgFrontend\TgFrontend.csproj" />
+    <ProjectReference Include="..\TgFrontend\TgDrive.BotClient.Frontend.csproj" />
     <ProjectReference Include="..\TgServices\TgServices.csproj" />
   </ItemGroup>
 

@@ -7,7 +7,6 @@ using DriveServices.Messages;
 using EfRepositories;
 using EfRepositories.Repositories;
 using LiteDB;
-using MappingConfig;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

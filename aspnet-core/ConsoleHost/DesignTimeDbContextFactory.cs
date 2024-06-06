@@ -5,8 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace ConsoleHost;
 
-public class
-    DesignTimeDbContextFactory : IDesignTimeDbContextFactory<TgDriveContext>
+public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<TgDriveContext>
 {
     public TgDriveContext CreateDbContext(string[] args)
     {

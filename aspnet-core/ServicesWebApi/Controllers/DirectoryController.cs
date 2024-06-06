@@ -3,7 +3,7 @@ using DriveServices;
 using Microsoft.AspNetCore.Mvc;
 using Repositories.Exceptions;
 
-namespace ServicesWebApi.Controllers;
+namespace TgDrive.Web.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

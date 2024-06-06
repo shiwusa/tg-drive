@@ -1,9 +1,8 @@
-﻿using System.Text;
-using TgAuth.Models;
-using TgAuth.Utils;
-
-namespace TgAuth.Middlewares;
+﻿using TgDrive.Web.Models;
+using TgDrive.Web.Utils;
 using Microsoft.AspNetCore.Http;
+
+namespace TgDrive.Web.Middlewares;
 
 public class TgAuthMiddleware
 {

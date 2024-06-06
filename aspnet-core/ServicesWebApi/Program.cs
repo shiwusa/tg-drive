@@ -4,7 +4,7 @@ using DriveServices.Clients;
 using DriveServices.Implementations;
 using MassTransit;
 using ServicesExtensions;
-using TgAuth.Middlewares;
+using TgDrive.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +39,6 @@ builder.Services.AddDirectoryService();
 builder.Services.AddScoped<ITgFileService, TgFileServiceClient>();
 
 string cors_allowTgDrive = "allowTgDrive";
-// string cors_allowTgDriveDev = "allowTgDriveDev";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(
