@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DriveServices\TgDrive.FileSystem.Application.csproj" />
-    <ProjectReference Include="..\EfRepositories\EfRepositories.csproj" />
     <ProjectReference Include="..\MappingConfig\MappingConfig.csproj" />
   </ItemGroup>
 

@@ -68,16 +68,16 @@ public class LiteDbMessageStorage : IMessageStorage
         {
             var document = new UserDocument
             {
-                ChatId = state.chatId,
-                UserId = state.userId,
-                State = state.values
+                ChatId = state.ChatId,
+                UserId = state.UserId,
+                State = state.Values
             };
 
             var users = _db.GetCollection<UserDocument>(UsersCollectionName);
             var existingState = users.FindOne(u => u.Id == document.Id);
             if (existingState != null)
             {
-                existingState.State = state.values;
+                existingState.State = state.Values;
                 users.Update(existingState);
             }
             else
@@ -93,7 +93,7 @@ public class LiteDbMessageStorage : IMessageStorage
         await Task.Run(() =>
         {
             var users = _db.GetCollection<UserDocument>(UsersCollectionName);
-            var document = new UserDocument {ChatId = chatId, UserId = userId};
+            var document = new UserDocument { ChatId = chatId, UserId = userId };
             var existingState = users.FindOne(u => u.Id == document.Id);
             if (existingState != null)
             {

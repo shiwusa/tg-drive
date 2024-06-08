@@ -51,14 +51,13 @@ public class TgAuthMiddleware
 
     private bool ValidateAuthData(string dataString, string hash)
     {
-        string? tgBotToken = Environment.GetEnvironmentVariable("TGDRIVE_BOT_TOKEN");
-        if (tgBotToken == null)
+        var tgBotToken = Environment.GetEnvironmentVariable("TGDRIVE_BOT_TOKEN");
+        if (tgBotToken is null)
         {
             return false;
         }
         
-        string signature = HashHelper.ComputeSha256HMACSignature(tgBotToken, dataString);
-
+        var signature = HashHelper.ComputeSha256HMACSignature(tgBotToken, dataString);
         return signature == hash;
     }
     
@@ -78,7 +77,7 @@ public class TgAuthMiddleware
         {
             Id = long.Parse(pairs["id"]),
             FirstName = pairs["first_name"],
-            LastName = pairs.GetValueOrDefault("last_name"),
+            LastName = pairs.GetValueOrDefault("last_name") ?? "",
             Username = pairs["username"],
             PhotoUrl = pairs["photo_url"],
         };

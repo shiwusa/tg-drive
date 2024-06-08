@@ -12,8 +12,8 @@ public static class KeyboardBuilder
         foreach (var btn in buttons)
         {
             var inlineBtn = new TgButton(btn.Text,
-                $"{menuCallbackId} {btn.Callback} {string.Join(' ', btn.args)}",
-                btn.args);
+                $"{menuCallbackId} {btn.Callback} {string.Join(' ', btn.Args)}",
+                btn.Args);
             keys.Add(new List<TgButton> {inlineBtn});
         }
 

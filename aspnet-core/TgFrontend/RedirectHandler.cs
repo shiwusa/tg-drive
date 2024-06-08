@@ -1,35 +1,34 @@
-﻿using TgFrontend.Abstractions;
+﻿using System;
+using TgFrontend.Abstractions;
 using TgGateway.Abstractions;
 
 namespace TgFrontend;
 
 public class RedirectHandler : IRedirectHandler
 {
-    private IEnumerable<MenuBase> _menus = new List<MenuBase>();
-    private ITgDriveBotClient _bot;
+    private readonly IServiceProvider _serviceProvider;
 
-    public void Initialize(ITgDriveBotClient bot, IEnumerable<MenuBase> menus)
+    public RedirectHandler(IServiceProvider serviceProvider)
     {
-        _bot = bot;
-        _menus = menus;
+        _serviceProvider = serviceProvider;
     }
 
     public async Task Redirect(long chatId, Type menuType, params object[] args)
     {
-        var menu = _menus.FirstOrDefault(m => m.GetType() == menuType);
+        var menu = _serviceProvider.GetService(menuType);
+        //var menu = _menus.FirstOrDefault(m => m.GetType() == menuType);
         if (menu == null)
         {
             return;
         }
 
-        var openMethod = menu.GetType()
-            .GetMethod("Open");
+        var openMethod = menuType.GetMethod("Open");
         if (openMethod == null)
         {
             return;
         }
 
-        var result = openMethod.Invoke(menu, new object?[] {chatId}.Concat(args).ToArray());
+        var result = openMethod.Invoke(menu, new object?[] { chatId }.Concat(args).ToArray());
         if (result?.GetType() != typeof(Task))
         {
             return;

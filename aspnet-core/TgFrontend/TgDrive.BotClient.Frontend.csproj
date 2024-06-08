@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DriveServices\TgDrive.FileSystem.Application.csproj" />
-    <ProjectReference Include="..\TgGateway\TgGateway.csproj" />
     <ProjectReference Include="..\TgServices\TgServices.csproj" />
   </ItemGroup>
 

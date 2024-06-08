@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataTransfer\DataTransfer.csproj"/>
     <ProjectReference Include="..\Repositories\Repositories.csproj"/>
   </ItemGroup>
 

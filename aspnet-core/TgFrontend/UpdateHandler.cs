@@ -5,27 +5,21 @@ using TgGateway.Models.Updates;
 
 namespace TgFrontend;
 
-public class UpdateHandler
+public class UpdateHandler : IUpdateHandler
 {
-    private readonly ITgDriveBotClient _botClient;
     private readonly RootMenu _rootMenu;
     private readonly SettingsMenu _settingsMenu;
     private readonly IEnumerable<MenuBase> _menus;
 
     public UpdateHandler(
-        ITgDriveBotClient botClient,
-        IRedirectHandler redirectHandler,
         RootMenu rootMenu,
-        DirectoryMenu directoryMenu,
         SettingsMenu settingsMenu,
-        FileMenu fileMenu
-    )
+        DirectoryMenu directoryMenu,
+        FileMenu fileMenu)
     {
-        _botClient = botClient;
         _rootMenu = rootMenu;
         _settingsMenu = settingsMenu;
-        _menus = new MenuBase[] {directoryMenu, rootMenu, directoryMenu, fileMenu, _settingsMenu};
-        redirectHandler.Initialize(_botClient, _menus);
+        _menus = new MenuBase[] { rootMenu, _settingsMenu, directoryMenu, fileMenu };
     }
 
     public async Task HandleCallback(TgCallbackUpdate update)

@@ -38,11 +38,11 @@ builder.Services.AddFileService();
 builder.Services.AddDirectoryService();
 builder.Services.AddScoped<ITgFileService, TgFileServiceClient>();
 
-string cors_allowTgDrive = "allowTgDrive";
+const string corsAllowTgDrive = "allowTgDrive";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(
-        name: cors_allowTgDrive,
+        name: corsAllowTgDrive,
         policy =>
         {
             policy.AllowCredentials();
@@ -63,7 +63,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.UseCors(cors_allowTgDrive);
+app.UseCors(corsAllowTgDrive);
 
 app.UseMiddleware<TgAuthMiddleware>();
 
