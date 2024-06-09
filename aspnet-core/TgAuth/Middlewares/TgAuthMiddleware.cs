@@ -1,8 +1,6 @@
-﻿using TgDrive.Web.Models;
-using TgDrive.Web.Utils;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
-namespace TgDrive.Web.Middlewares;
+namespace TgDrive.Web.Auth;
 
 public class TgAuthMiddleware
 {

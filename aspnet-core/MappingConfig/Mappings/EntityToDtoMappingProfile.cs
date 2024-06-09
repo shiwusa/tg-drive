@@ -2,7 +2,7 @@
 using DataTransfer.Objects;
 using EfRepositories.Entities;
 
-namespace EfRepositories.Mappings;
+namespace TgDrive.Config.AutoMapper;
 
 public class EntityToDtoMappingProfile : Profile
 {

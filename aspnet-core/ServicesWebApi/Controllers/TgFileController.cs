@@ -2,7 +2,7 @@
 using DriveServices;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TgDrive.Web.Controllers;
+namespace TgDrive.Web.HttpApi;
 
 [Route("api/[controller]")]
 [ApiController]

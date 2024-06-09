@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TgDrive.Web.Models;
+using TgDrive.Web.Auth;
 
-namespace TgDrive.Web;
+namespace TgDrive.Web.HttpApi;
 
 public class TgDriveController : ControllerBase
 {

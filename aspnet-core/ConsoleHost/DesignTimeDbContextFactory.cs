@@ -22,7 +22,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<TgDriveCon
         builder.UseMySql(
             connectionString,
             ServerVersion.AutoDetect(connectionString),
-            options => options.MigrationsAssembly("MySqlMigrations")
+            options => options.MigrationsAssembly("TgDrive.DataAccess.MySqlMigrations")
         );
 
         return new TgDriveContext(builder.Options);

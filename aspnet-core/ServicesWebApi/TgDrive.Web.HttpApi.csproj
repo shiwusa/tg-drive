@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServicesExtensions\TgDrive.ServicesConfiguration.csproj" />
+    <ProjectReference Include="..\ServicesExtensions\TgDrive.Config.Services.csproj" />
     <ProjectReference Include="..\TgAuth\TgDrive.Web.Auth.csproj" />
     <ProjectReference Include="..\TgServices.Shared\TgServices.Shared.csproj" />
   </ItemGroup>

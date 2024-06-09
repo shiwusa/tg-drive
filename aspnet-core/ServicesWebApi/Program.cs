@@ -4,7 +4,7 @@ using DriveServices.Clients;
 using DriveServices.Implementations;
 using MassTransit;
 using ServicesExtensions;
-using TgDrive.Web.Middlewares;
+using TgDrive.Web.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 

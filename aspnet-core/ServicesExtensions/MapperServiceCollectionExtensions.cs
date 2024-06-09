@@ -1,5 +1,5 @@
-﻿using MappingConfig;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using TgDrive.Config.AutoMapper;
 
 namespace ServicesExtensions;
 public static class MapperServiceCollectionExtensions

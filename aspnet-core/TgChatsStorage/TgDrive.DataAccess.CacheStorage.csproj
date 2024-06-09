@@ -7,12 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EfRepositories\EfRepositories.csproj"/>
+    <PackageReference Include="LiteDB" Version="5.0.12" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.6"/>
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1"/>
+    <ProjectReference Include="..\TgGateway\TgDrive.Domain.Telegram.csproj" />
   </ItemGroup>
 
 </Project>

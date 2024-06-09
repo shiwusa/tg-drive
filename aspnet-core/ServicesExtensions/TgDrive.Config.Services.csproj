@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DriveServices\TgDrive.FileSystem.Application.csproj" />
-    <ProjectReference Include="..\MappingConfig\MappingConfig.csproj" />
+    <ProjectReference Include="..\DriveServices\TgDrive.Domain.Services.csproj" />
+    <ProjectReference Include="..\MappingConfig\TgDrive.Config.AutoMapper.csproj" />
   </ItemGroup>
 
 </Project>

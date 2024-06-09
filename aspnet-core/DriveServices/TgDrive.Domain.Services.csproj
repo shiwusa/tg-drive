@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Repositories\Repositories.csproj" />
-    <ProjectReference Include="..\TgGateway\TgGateway.csproj" />
+    <ProjectReference Include="..\Repositories\TgDrive.DataAccess.Shared.csproj" />
+    <ProjectReference Include="..\TgGateway\TgDrive.Domain.Telegram.csproj" />
+    <ProjectReference Include="..\TgServices.Shared\TgServices.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
