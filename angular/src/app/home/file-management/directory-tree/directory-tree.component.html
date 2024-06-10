@@ -3,7 +3,7 @@
   <ng-template let-node pTemplate="default">
     <b *ngIf="!node.data.adding">{{node.label}}</b>
     <div *ngIf="node.data.adding" class="p-inputgroup">
-      <input type="text" pInputText placeholder="New directory name" [(ngModel)]="node.data.dto.name">
+      <input type="text" pInputText placeholder="New directory name" [(ngModel)]="node.data.dto.name" [required]="true">
       <button type="button" pButton icon="pi pi-check" class="p-button-success p-button-text" (click)="approveAdding(node)"></button>
       <button type="button" pButton icon="pi pi-times" class="p-button-danger p-button-text" (click)="cancelAdding()"></button>
     </div>
@@ -11,7 +11,7 @@
 </p-tree>
 <p-contextMenu #cm [model]="directoryMenu"></p-contextMenu>
 
-<app-editor-dialog [(visible)]="directoryRenaming" [header]="'Edit directory'"
-  [editingValue]="selectedDirectoryNode?.data?.dto?.name" [message]="'Enter a new name for the directory'"
+<app-editor-dialog [(visible)]="directoryRenaming" [header]="'Rename directory'"
+  [editingValue]="selectedDirectoryNode.data!.dto!.name" [message]="'Enter a new name for the directory'"
   (valueSaved)="onDirectoryRenamed($event)" [required]="true">
 </app-editor-dialog>

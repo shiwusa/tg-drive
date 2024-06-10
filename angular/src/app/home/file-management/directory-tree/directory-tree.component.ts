@@ -208,8 +208,26 @@ export class DirectoryTreeComponent implements OnInit {
   }
 
   async approveAdding(node: TreeNode<Directory>) {
+    const dirName = node.data!.dto.name;
+    if (!dirName || dirName === "" ) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Directory name cannot be empty',
+        sticky: true,
+      });
+      return;
+    }
+
     this.loading = true;
     await this.directoryService.addDirectory(node.data!.dto);
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: `Directory ${dirName} was successfully created`,
+      sticky: true,
+    });
     if (!!node.data?.parentNode) {
       this.expandNode(node.data.parentNode);
     }
