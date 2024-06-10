@@ -33,7 +33,7 @@ export class FileService {
       }));
   }
 
-  public removeDirectory(fileId: number): Promise<FileDto> {
+  public removeFile(fileId: number): Promise<FileDto> {
     return lastValueFrom(
       this.http.delete<FileDto>(this.createUrl('Remove'), {
         params: { fileId },

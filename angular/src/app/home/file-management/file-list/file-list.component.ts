@@ -109,7 +109,7 @@ export class FileListComponent implements OnInit, OnChanges {
   removeFile(file: File) {
     this.confirmationService.confirm({
       accept: () => {
-        const result = this.fileService.removeDirectory(file.data.id)
+        const result = this.fileService.removeFile(file.data.id)
         .then(
           (file) => {
             this.messageService.add({
