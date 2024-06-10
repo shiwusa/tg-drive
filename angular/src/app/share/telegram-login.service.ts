@@ -1,5 +1,4 @@
 import { Injectable, NgZone } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
@@ -8,15 +7,11 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class TelegramLoginService {
   loggedIn$ = new BehaviorSubject<boolean>(sessionStorage.getItem('logged-in') === 'true');
 
-  constructor(
-    private ngZone: NgZone,
-    private cookieService: CookieService,
-    ) {
+  constructor(private ngZone: NgZone) {
     this.init();
   }
 
   init() {
-    debugger;
     (window as any)['loginViaTelegram'] = (loginData: any) =>
       this.loginViaTelegram(loginData);
   }
@@ -24,18 +19,16 @@ export class TelegramLoginService {
   signOut() {
     this.ngZone.run(() =>
     {
-        this.cookieService.delete('tg-hash');
-        this.cookieService.delete('tg-data');
+        sessionStorage.removeItem('tg-hash');
+        sessionStorage.removeItem('tg-data');
         sessionStorage.setItem('logged-in', 'false');
         this.loggedIn$.next(false);
     });
   }
 
   private loginViaTelegram(loginData: any) {
-    debugger;
     this.ngZone.run(() =>
     {
-      debugger;
       if (!!loginData) {
         const dataCheckString = this.getDataCheckString(loginData);
         sessionStorage.setItem('tg-hash', loginData.hash);

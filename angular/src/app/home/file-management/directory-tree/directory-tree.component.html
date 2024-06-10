@@ -10,3 +10,8 @@
   </ng-template>
 </p-tree>
 <p-contextMenu #cm [model]="directoryMenu"></p-contextMenu>
+
+<app-editor-dialog [(visible)]="directoryRenaming" [header]="'Edit directory'"
+  [editingValue]="selectedDirectoryNode?.data?.dto?.name" [message]="'Enter a new name for the directory'"
+  (valueSaved)="onDirectoryRenamed($event)" [required]="true">
+</app-editor-dialog>

@@ -16,6 +16,27 @@ export class FileService {
     return lastValueFrom(
       this.http.get<FileDto[]>(this.createUrl('GetFiles'), {
         params: { directoryId },
+      }));
+  }
+
+  public changeName(fileId: number, newName: string): Promise<FileDto> {
+    return lastValueFrom(
+      this.http.put<FileDto>(this.createUrl('ChangeName'), {}, {
+        params: { fileId, newName },
+      }));
+  }
+
+  public changeDescription(fileId: number, newDescription: string): Promise<FileDto> {
+    return lastValueFrom(
+      this.http.put<FileDto>(this.createUrl('ChangeDescription'), {}, {
+        params: { fileId, newDescription },
+      }));
+  }
+
+  public removeDirectory(fileId: number): Promise<FileDto> {
+    return lastValueFrom(
+      this.http.delete<FileDto>(this.createUrl('Remove'), {
+        params: { fileId },
       })
     );
   }

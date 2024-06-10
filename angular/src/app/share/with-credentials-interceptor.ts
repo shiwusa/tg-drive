@@ -15,11 +15,16 @@ export class WithCredentialsInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const tgHash = sessionStorage.getItem('tg-hash');
     const tgData = sessionStorage.getItem('tg-data');
-    const headers =
-      !!tgHash && !!tgData
-        ? request.headers.append('tg-hash', encodeURI(tgHash)).append('tg-data', encodeURI(tgData))
-        : request.headers;
-    request = request.clone({
+    const headers = !!tgHash && !!tgData
+      ? request.headers
+          .append('tg-hash', encodeURI(tgHash))
+          .append('tg-data', encodeURI(tgData))
+      : request.headers;
+
+      console.log(encodeURI(tgHash!));
+      console.log(encodeURI(tgData!));
+
+      request = request.clone({
       withCredentials: true,
       headers,
     });

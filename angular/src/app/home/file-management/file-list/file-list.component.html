@@ -1,37 +1,85 @@
-<p-table [value]="files" [loading]="loading">
+<p-table [value]="files" dataKey="data.id" editMode="row" [loading]="loading">
   <ng-template pTemplate="caption">
     <div *ngIf="!currentDirectory" class="flex align-items-center justify-content-center">
       <div class="flex align-items-center justify-content-center" style="height:100px">No
         directory selected</div>
     </div>
     <div *ngIf="currentDirectory" class="flex align-items-center">
-      <div class="directory-name"><i class="pi pi-folder-open mr-2"
-          style="font-size: 1.5rem"></i>{{currentDirectory.name}}</div>
+      <div class="directory-name">
+        <i class="pi pi-folder-open mr-2" style="font-size: 1.5rem"></i>
+        {{currentDirectory.name}}
+      </div>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
     <tr *ngIf="currentDirectory">
-      <th>Filename</th>
-      <th>Description</th>
-      <th>Direct link</th>
-      <th></th>
+      <th style="width:20%; max-width:100px;">Filename</th>
+      <th style="width:30%; max-width:250px;">Description</th>
+      <th style="width:25%; max-width:250px;">Direct link</th>
+      <th style="width:20%; min-width:100px;"></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-file>
-    <tr>
-      <td>{{file.data.name}}</td>
-      <td>{{file.data.description}}</td>
+  <ng-template pTemplate="body" let-file let-editing="editing" let-ri="rowIndex">
+    <tr class="row" [pEditableRow]="file">
       <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText
+              class="p-inputtext-sm" type="text" [(ngModel)]="file.data.name" [required]="true">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{file.data.name}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td >
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="file.data.description">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{file.data.description}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td >
         <a target="_blank" rel="noopener noreferrer" [attr.href]="file.link">{{file.link}}</a>
       </td>
-      <td>
-        <button type="button" pButton icon="pi pi-external-link" class="p-button-success p-button-text" (click)="sendFile(file)"></button>
+      <td >
+        <div>
+          <button *ngIf="!editing" type="button" pButton icon="pi pi-external-link"
+            pTooltip="Send to Telegram" tooltipPosition="top"
+            class="p-button-success p-button-sm p-button-text w-1 pr-3 pl-3" (click)="sendFile(file)">
+          </button>
+          <button *ngIf="!editing" type="button" pButton icon="pi pi-pencil"
+            pTooltip="Edit" tooltipPosition="top" pInitEditableRow
+            class="p-button-warning p-button-sm p-button-text w-1 pr-3 pl-3" (click)="onRowEditInit(file)">
+          </button>
+          <button *ngIf="!editing" type="button" pButton icon="pi pi-trash"
+            pTooltip="Delete" tooltipPosition="top"
+            class="p-button-danger p-button-sm p-button-text w-1 pr-3 pl-3" (click)="removeFile(file)">
+          </button>
+          <button *ngIf="!editing" type="button" pButton icon="pi pi-info-circle"
+            pTooltip="File info" tooltipPosition="top"
+            class="p-button-info p-button-sm p-button-text w-1 pr-3 pl-3" (click)="sendFile(file)">
+          </button>
+          <button *ngIf="editing" pButton pRipple type="button"
+            pTooltip="Save" tooltipPosition="top"
+            pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(file)"
+            class="p-button-rounded p-button-success p-button-sm p-button-text pr-3 pl-3">
+          </button>
+          <button *ngIf="editing" pButton pRipple type="button"
+            pTooltip="Cancel" tooltipPosition="top"
+            pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(file, ri)"
+            class="p-button-rounded p-button-danger p-button-sm p-button-text pr-3 pl-3">
+          </button>
+        </div>
       </td>
     </tr>
   </ng-template>
   <ng-template pTemplate="emptymessage" let-file>
     <tr *ngIf="currentDirectory">
-      <td colspan="4" >This folder does not contain any files.</td>
+      <td colspan="4">This folder does not contain any files.</td>
     </tr>
   </ng-template>
 </p-table>
