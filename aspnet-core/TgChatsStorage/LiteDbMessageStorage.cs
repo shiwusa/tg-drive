@@ -43,18 +43,20 @@ public class LiteDbMessageStorage : IMessageStorage
             var chats = _db.GetCollection<ChatDocument>(ChatsCollectionName);
             var chat = chats
                 .FindOne(x => x.ChatId == chatId);
-            if (chat != null)
+            if (chat == null)
             {
-                if (filter != null)
-                {
-                    result = chat.Messages
-                        .LastOrDefault(m => filter.Contains(m.Purpose));
-                }
-                else
-                {
-                    result = chat.Messages
-                        .LastOrDefault();
-                }
+                return;
+            }
+
+            if (filter != null)
+            {
+                result = chat.Messages
+                    .LastOrDefault(m => filter.Contains(m.Purpose));
+            }
+            else
+            {
+                result = chat.Messages
+                    .LastOrDefault();
             }
         });
         return result;
@@ -66,13 +68,16 @@ public class LiteDbMessageStorage : IMessageStorage
         {
             var document = new UserDocument
             {
-                ChatId = state.chatId, UserId = state.userId, State = state.values
+                ChatId = state.ChatId,
+                UserId = state.UserId,
+                State = state.Values
             };
+
             var users = _db.GetCollection<UserDocument>(UsersCollectionName);
             var existingState = users.FindOne(u => u.Id == document.Id);
             if (existingState != null)
             {
-                existingState.State = state.values;
+                existingState.State = state.Values;
                 users.Update(existingState);
             }
             else
@@ -88,7 +93,7 @@ public class LiteDbMessageStorage : IMessageStorage
         await Task.Run(() =>
         {
             var users = _db.GetCollection<UserDocument>(UsersCollectionName);
-            var document = new UserDocument {ChatId = chatId, UserId = userId};
+            var document = new UserDocument { ChatId = chatId, UserId = userId };
             var existingState = users.FindOne(u => u.Id == document.Id);
             if (existingState != null)
             {
@@ -113,7 +118,7 @@ public class LiteDbMessageStorage : IMessageStorage
                 .FindOne(x => x.ChatId == msg.ChatId);
             if (chat == null)
             {
-                chat = new ChatDocument {ChatId = msg.ChatId};
+                chat = new ChatDocument { ChatId = msg.ChatId };
                 chats.Insert(chat);
             }
 
@@ -132,20 +137,23 @@ public class LiteDbMessageStorage : IMessageStorage
             var chats = _db.GetCollection<ChatDocument>(ChatsCollectionName);
             var chat = chats
                 .FindOne(x => x.ChatId == chatId);
-            if (chat != null)
+            if (chat == null)
             {
-                if (filter != null)
-                {
-                    messages = chat.Messages
-                        .Where(x => filter.Contains(x.Purpose))
-                        .ToList();
-                }
-                else
-                {
-                    messages = chat.Messages;
-                }
+                return;
+            }
+
+            if (filter != null)
+            {
+                messages = chat.Messages
+                    .Where(x => filter.Contains(x.Purpose))
+                    .ToList();
+            }
+            else
+            {
+                messages = chat.Messages;
             }
         });
+
         return messages;
     }
 

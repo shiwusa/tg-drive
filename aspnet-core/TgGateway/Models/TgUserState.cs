@@ -1,7 +1,7 @@
 ﻿namespace TgGateway.Models;
 
 public record TgUserState(
-    long userId,
-    long chatId,
-    Dictionary<string, string> values
+    long UserId,
+    long ChatId,
+    Dictionary<string, string> Values
 );

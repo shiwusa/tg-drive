@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TgAuth.Models;
+using TgDrive.Web.Auth;
 
-namespace ServicesWebApi;
+namespace TgDrive.Web.HttpApi;
 
-public class TgDriveController : ControllerBase
+public class TgDriveControllerBase : ControllerBase
 {
     public TelegramAuthData AuthData =>
-        HttpContext.Items["auth-data"] is TelegramAuthData authData
+        HttpContext.Items[AuthorizationConsts.AuthDataItemName] is TelegramAuthData authData
             ? authData
             : throw new Exception("Auth data not provided.");
 

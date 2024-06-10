@@ -4,7 +4,8 @@ using DriveServices.Clients;
 using DriveServices.Implementations;
 using MassTransit;
 using ServicesExtensions;
-using TgAuth.Middlewares;
+using TgDrive.Web.Auth;
+using TgDrive.Web.HttpApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,10 @@ builder.Services.AddMassTransit(x =>
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.OperationFilter<AuthHeaderOperationFilter>();
+});
 
 var mySqlConnectionStr =
     Environment.GetEnvironmentVariable("TGDRIVE_MYSQL_CONNECTION_STRING");
@@ -38,12 +42,11 @@ builder.Services.AddFileService();
 builder.Services.AddDirectoryService();
 builder.Services.AddScoped<ITgFileService, TgFileServiceClient>();
 
-string cors_allowTgDrive = "allowTgDrive";
-// string cors_allowTgDriveDev = "allowTgDriveDev";
+const string corsAllowTgDrive = "allowTgDrive";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(
-        name: cors_allowTgDrive,
+        name: corsAllowTgDrive,
         policy =>
         {
             policy.AllowCredentials();
@@ -59,12 +62,12 @@ var app = builder.Build();
 // if (app.Environment.IsDevelopment())
 // {
     app.UseSwagger();
-    app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
 // }
 
 app.UseHttpsRedirection();
 
-app.UseCors(cors_allowTgDrive);
+app.UseCors(corsAllowTgDrive);
 
 app.UseMiddleware<TgAuthMiddleware>();
 

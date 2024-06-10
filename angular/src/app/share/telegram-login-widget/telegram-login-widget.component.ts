@@ -12,7 +12,6 @@ export class TelegramLoginWidgetComponent implements AfterViewInit {
   @ViewChild('script', {static: true}) script: ElementRef = null as any;
 
   convertToScript() {
-    debugger;
     const element = this.script.nativeElement;
     const script = document.createElement('script');
     script.src = 'https://telegram.org/js/telegram-widget.js?21';

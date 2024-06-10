@@ -1,4 +1,4 @@
-﻿namespace TgAuth.Models;
+﻿namespace TgDrive.Web.Auth;
 
 public class TelegramAuthData
 {

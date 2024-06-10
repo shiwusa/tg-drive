@@ -90,7 +90,7 @@ public class UpdateParser : IUpdateParser
             Arguments: args,
             ChatId: callback.Message!.Chat.Id,
             SenderId: callback.From.Id,
-            State: userState.values
+            State: userState.Values
         ));
     }
 
@@ -101,7 +101,7 @@ public class UpdateParser : IUpdateParser
             return;
         }
 
-        string msgText = msg.Caption ?? msg.Text ?? msg.Document?.FileName ?? msg.Audio?.Title;
+        var msgText = msg.Caption ?? msg.Text ?? msg.Document?.FileName ?? msg.Audio?.Title;
         await _storage.SaveMessage(new TgMessage(
             ChatId: msg.Chat.Id,
             DateTime: msg.Date,
@@ -127,7 +127,7 @@ public class UpdateParser : IUpdateParser
                 DateTime: msg.Date,
                 Command: command,
                 SenderId: msg.From.Id,
-                State: userState.values
+                State: userState.Values
             ));
         }
         else
@@ -136,7 +136,7 @@ public class UpdateParser : IUpdateParser
                 ChatId: msg.Chat.Id,
                 SenderId: msg.From.Id,
                 DateTime: msg.Date,
-                State: userState.values,
+                State: userState.Values,
                 Message: new TgMessage(
                     ChatId: msg.Chat.Id,
                     MessageId: msg.MessageId,

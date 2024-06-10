@@ -20,6 +20,14 @@ export class DirectoryService {
     );
   }
 
+  public renameDirectory(directoryId: number, newName: string): Promise<DirectoryDto> {
+    return lastValueFrom(
+      this.http.put<DirectoryDto>(this.createUrl('RenameDirectory'), {}, {
+        params: { directoryId, newName },
+      })
+    );
+  }
+
   public getRoot(): Promise<DirectoryDto[]> {
     return lastValueFrom(
       this.http.get<DirectoryDto[]>(this.createUrl('GetRoot'))

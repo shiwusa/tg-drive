@@ -6,7 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { ConfirmationService, TreeNode } from 'primeng/api';
+import { ConfirmationService, MessageService, TreeNode } from 'primeng/api';
 import { DirectoryService } from 'src/app/proxy-services/directory.service';
 import { DirectoryDto } from 'src/app/proxy-services/models';
 import { MenuItem } from 'primeng/api';
@@ -37,9 +37,13 @@ export class DirectoryTreeComponent implements OnInit {
   @Output()
   selectedDirectoryChange = new EventEmitter<DirectoryDto>();
 
+  directoryRenaming: boolean = false;
+
+
   constructor(
     private directoryService: DirectoryService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {
     this.directoryMenu = [
       {
@@ -51,6 +55,11 @@ export class DirectoryTreeComponent implements OnInit {
         label: 'Refresh',
         icon: 'pi pi-refresh',
         command: (x) => this.refreshDirectory(this.selectedDirectoryNode),
+      },
+      {
+        label: 'Rename',
+        icon: 'pi pi-pencil',
+        command: (x) => this.renameDirectory(this.selectedDirectoryNode),
       },
       {
         label: 'Remove',
@@ -95,6 +104,10 @@ export class DirectoryTreeComponent implements OnInit {
     }
   }
 
+  renameDirectory(node: TreeNode<Directory>) {
+    this.directoryRenaming = true;
+  }
+
   removeDirectory(node: TreeNode<Directory>) {
     if (!node) return;
     this.confirmationService.confirm({
@@ -109,9 +122,9 @@ export class DirectoryTreeComponent implements OnInit {
         }
       },
       closeOnEscape: true,
-      message: `Are you sure you want to delete the directory '${node.data?.dto.name}?\n
-      The folder and its children will be lost permanently,\n
-      though you can find the related messages in your storage channel.'`,
+      message: `Are you sure you want to delete the directory: ${node.data?.dto.name}?\n
+      The directory and its children will be lost permanently,\n
+      though you can find the related messages in your storage channel.`,
     });
   }
 
@@ -152,6 +165,46 @@ export class DirectoryTreeComponent implements OnInit {
 
   cancelAdding() {
     this.removeAllAdding();
+  }
+
+  onDirectoryRenamed(newName: string) {
+    if (!newName || newName == "") {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Directory name cannot be empty',
+        sticky: true,
+      });
+      return;
+    }
+
+    // this.root.find(
+    //   node => node.data?.dto.id === this.selectedDirectoryNode.data!.dto.id)!
+    //     .data!.dto.name = newName;
+    // // this.selectedDirectory.name = newName;
+    // this.selectedDirectoryNode.data!.dto.name = newName;
+    this.directoryService.renameDirectory(
+      this.selectedDirectoryNode.data!.dto.id, newName)
+      .then(
+        (file) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Directory successfully renamed',
+            sticky: true,
+          });
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Update of directory was not successful',
+            sticky: true,
+        });
+      });
+
+      this.directoryRenaming = false;
+      window.location.reload();
   }
 
   async approveAdding(node: TreeNode<Directory>) {

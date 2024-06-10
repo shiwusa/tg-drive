@@ -14,13 +14,6 @@ public class TgDriveBotClient : ITgDriveBotClient
     private readonly IMessageStorage _storage;
     private readonly ITelegramBotClient _tgBotClient;
 
-    private readonly TgMessagePurpose[] _unimportantPurposes =
-    {
-        TgMessagePurpose.Command, TgMessagePurpose.Message, TgMessagePurpose.Unknown
-    };
-
-    private UpdateParser? _updateParser;
-
     public TgDriveBotClient(ITelegramBotClient tgBotClient, IMessageStorage storage)
     {
         _tgBotClient = tgBotClient;
@@ -29,17 +22,16 @@ public class TgDriveBotClient : ITgDriveBotClient
 
     public void StartReceiving(IUpdateHandler handler)
     {
-        _updateParser = new UpdateParser(_storage, handler);
+        var updateParser = new UpdateParser(_storage, handler);
         var cts = new CancellationTokenSource();
         var cancellationToken = cts.Token;
         var receiverOptions = new ReceiverOptions();
         _tgBotClient.StartReceiving(
-            _updateParser,
+            updateParser,
             receiverOptions,
             cancellationToken
         );
     }
-
 
     public async Task<long> SendMenu(long chatId, MenuData data)
     {
@@ -249,7 +241,8 @@ public class TgDriveBotClient : ITgDriveBotClient
 
     private async void TryClearChatExceptMenu(long chatId)
     {
-        var msgsToDelete = await _storage.GetMessages(chatId, _unimportantPurposes);
+        var msgsToDelete = await _storage.GetMessages(
+            chatId, new [] { TgMessagePurpose.Command, TgMessagePurpose.Message, TgMessagePurpose.Unknown});
         foreach (var msg in msgsToDelete)
         {
             try

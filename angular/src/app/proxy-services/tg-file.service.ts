@@ -15,7 +15,6 @@ export class TgFileService {
     return lastValueFrom(
       this.http.post<number>(this.createUrl('SendFile'), {}, {
         params: { fileId },
-      })
-    );
+      }));
   }
 }

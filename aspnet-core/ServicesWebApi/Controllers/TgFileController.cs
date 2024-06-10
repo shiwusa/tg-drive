@@ -2,11 +2,11 @@
 using DriveServices;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ServicesWebApi.Controllers;
+namespace TgDrive.Web.HttpApi;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TgFileController : TgDriveController
+public class TgFileController : TgDriveControllerBase
 {
     private readonly ILogger<TgFileController> _logger;
     private readonly ITgFileService _tgFileService;

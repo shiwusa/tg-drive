@@ -1,16 +1,9 @@
-﻿using System.Text;
-using TgAuth.Models;
-using TgAuth.Utils;
+﻿using Microsoft.AspNetCore.Http;
 
-namespace TgAuth.Middlewares;
-using Microsoft.AspNetCore.Http;
+namespace TgDrive.Web.Auth;
 
 public class TgAuthMiddleware
 {
-    private static readonly string HashHeaderName = "tg-hash";
-    private static readonly string DataHeaderName = "tg-data";
-    private static readonly string AuthDataItemName = "auth-data";
-    
     private readonly RequestDelegate _next;
 
     public TgAuthMiddleware(RequestDelegate next)
@@ -26,8 +19,10 @@ public class TgAuthMiddleware
             return;
         }
         
-        bool hashPresent = context.Request.Headers.TryGetValue(HashHeaderName, out var hashHeader);
-        bool dataPresent = context.Request.Headers.TryGetValue(DataHeaderName, out var dataStringHeader);
+        bool hashPresent = context.Request.Headers.TryGetValue(
+            AuthorizationConsts.HashHeaderName, out var hashHeader);
+        bool dataPresent = context.Request.Headers.TryGetValue(
+            AuthorizationConsts.DataHeaderName, out var dataStringHeader);
         if (!hashPresent || !dataPresent)
         {
             await RejectAuth(context);
@@ -45,21 +40,20 @@ public class TgAuthMiddleware
         }
 
         var parsed = ParseAuthData(dataString);
-        context.Items[AuthDataItemName] = parsed;
+        context.Items[AuthorizationConsts.AuthDataItemName] = parsed;
         
         await _next.Invoke(context);
     }
 
     private bool ValidateAuthData(string dataString, string hash)
     {
-        string? tgBotToken = Environment.GetEnvironmentVariable("TGDRIVE_BOT_TOKEN");
-        if (tgBotToken == null)
+        var tgBotToken = Environment.GetEnvironmentVariable("TGDRIVE_BOT_TOKEN");
+        if (tgBotToken is null)
         {
             return false;
         }
         
-        string signature = HashHelper.ComputeSha256HMACSignature(tgBotToken, dataString);
-
+        var signature = HashHelper.ComputeSha256HMACSignature(tgBotToken, dataString);
         return signature == hash;
     }
     
@@ -79,7 +73,7 @@ public class TgAuthMiddleware
         {
             Id = long.Parse(pairs["id"]),
             FirstName = pairs["first_name"],
-            LastName = pairs.GetValueOrDefault("last_name"),
+            LastName = pairs.GetValueOrDefault("last_name") ?? "",
             Username = pairs["username"],
             PhotoUrl = pairs["photo_url"],
         };

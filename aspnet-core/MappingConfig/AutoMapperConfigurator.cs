@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using EfRepositories.Mappings;
 
-namespace MappingConfig;
+namespace TgDrive.Config.AutoMapper;
 
 public static class AutoMapperConfigurator
 {

@@ -5,8 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace ConsoleHost;
 
-public class
-    DesignTimeDbContextFactory : IDesignTimeDbContextFactory<TgDriveContext>
+public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<TgDriveContext>
 {
     public TgDriveContext CreateDbContext(string[] args)
     {
@@ -23,7 +22,7 @@ public class
         builder.UseMySql(
             connectionString,
             ServerVersion.AutoDetect(connectionString),
-            options => options.MigrationsAssembly("MySqlMigrations")
+            options => options.MigrationsAssembly("TgDrive.DataAccess.MySqlMigrations")
         );
 
         return new TgDriveContext(builder.Options);

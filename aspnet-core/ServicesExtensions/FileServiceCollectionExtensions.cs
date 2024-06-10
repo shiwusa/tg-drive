@@ -10,8 +10,7 @@ public static class FileServiceCollectionExtensions
 {
     public static IServiceCollection AddFileService(this IServiceCollection services)
     {
-        var collectionContainsMapper =
-            services.Where(x => x.ServiceType == typeof(IMapper)).Any();
+        var collectionContainsMapper = services.Any(x => x.ServiceType == typeof(IMapper));
         if (!collectionContainsMapper)
         {
             services.AddMapper();

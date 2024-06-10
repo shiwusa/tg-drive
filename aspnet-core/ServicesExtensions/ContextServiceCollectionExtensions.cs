@@ -16,7 +16,7 @@ public static class ContextServiceCollectionExtensions
                 // ServerVersion.AutoDetect(mySqlConnectionStr),
                 new MySqlServerVersion(new Version(8, 0, 35)),
                 options => options
-                    .MigrationsAssembly("MySqlMigrations")
+                    .MigrationsAssembly("TgDrive.DataAccess.MySqlMigrations")
                     .EnableRetryOnFailure()
         ));
     }
