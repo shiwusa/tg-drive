@@ -5,6 +5,7 @@ using DriveServices.Implementations;
 using MassTransit;
 using ServicesExtensions;
 using TgDrive.Web.Auth;
+using TgDrive.Web.HttpApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,10 @@ builder.Services.AddMassTransit(x =>
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.OperationFilter<AuthHeaderOperationFilter>();
+});
 
 var mySqlConnectionStr =
     Environment.GetEnvironmentVariable("TGDRIVE_MYSQL_CONNECTION_STRING");
@@ -58,7 +62,7 @@ var app = builder.Build();
 // if (app.Environment.IsDevelopment())
 // {
     app.UseSwagger();
-    app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
 // }
 
 app.UseHttpsRedirection();

@@ -7,7 +7,7 @@ namespace TgDrive.Web.HttpApi;
 
 [Route("api/[controller]")]
 [ApiController]
-public class FileController : TgDriveController
+public class FileController : TgDriveControllerBase
 {
     private readonly ILogger<FileController> _logger;
     private readonly IFileService _fileService;

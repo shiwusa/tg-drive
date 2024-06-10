@@ -4,10 +4,6 @@ namespace TgDrive.Web.Auth;
 
 public class TgAuthMiddleware
 {
-    private static readonly string HashHeaderName = "tg-hash";
-    private static readonly string DataHeaderName = "tg-data";
-    private static readonly string AuthDataItemName = "auth-data";
-    
     private readonly RequestDelegate _next;
 
     public TgAuthMiddleware(RequestDelegate next)
@@ -23,8 +19,10 @@ public class TgAuthMiddleware
             return;
         }
         
-        bool hashPresent = context.Request.Headers.TryGetValue(HashHeaderName, out var hashHeader);
-        bool dataPresent = context.Request.Headers.TryGetValue(DataHeaderName, out var dataStringHeader);
+        bool hashPresent = context.Request.Headers.TryGetValue(
+            AuthorizationConsts.HashHeaderName, out var hashHeader);
+        bool dataPresent = context.Request.Headers.TryGetValue(
+            AuthorizationConsts.DataHeaderName, out var dataStringHeader);
         if (!hashPresent || !dataPresent)
         {
             await RejectAuth(context);
@@ -42,7 +40,7 @@ public class TgAuthMiddleware
         }
 
         var parsed = ParseAuthData(dataString);
-        context.Items[AuthDataItemName] = parsed;
+        context.Items[AuthorizationConsts.AuthDataItemName] = parsed;
         
         await _next.Invoke(context);
     }
