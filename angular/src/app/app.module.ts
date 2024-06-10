@@ -14,6 +14,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { FileListComponent } from './home/file-management/file-list/file-list.component';
 import { EditorDialogComponent } from './share/editor-dialog/editor-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { EditorDialogComponent } from './share/editor-dialog/editor-dialog.compo
     DialogModule,
     TooltipModule,
     ToastModule,
+    FileUploadModule,
   ],
   providers: [
     {

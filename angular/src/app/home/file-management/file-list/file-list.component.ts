@@ -138,4 +138,8 @@ export class FileListComponent implements OnInit, OnChanges {
         find the related messages in your storage channel.`,
     });
   }
+
+  onFileUpload(event: Event) {
+
+  }
 }
