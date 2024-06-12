@@ -1,8 +1,6 @@
-﻿using System;
-using TgFrontend.Abstractions;
-using TgGateway.Abstractions;
+﻿using TgDrive.BotClient.Frontend.Abstractions;
 
-namespace TgFrontend;
+namespace TgDrive.BotClient.Frontend;
 
 public class RedirectHandler : IRedirectHandler
 {

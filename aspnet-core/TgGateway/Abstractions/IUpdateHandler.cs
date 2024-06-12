@@ -1,6 +1,6 @@
-﻿using TgGateway.Models.Updates;
+﻿using TgDrive.Domain.Telegram.Updates;
 
-namespace TgGateway.Abstractions;
+namespace TgDrive.Domain.Telegram.Abstractions;
 
 public interface IUpdateHandler
 {

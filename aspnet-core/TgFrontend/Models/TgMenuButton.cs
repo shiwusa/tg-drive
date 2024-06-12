@@ -1,4 +1,4 @@
-﻿namespace TgFrontend.Models;
+﻿namespace TgDrive.BotClient.Frontend.Models;
 
 public record TgMenuButton
 {

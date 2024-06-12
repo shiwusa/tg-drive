@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
-using TgFrontend.Helpers;
-using TgFrontend.Models;
-using TgGateway.Abstractions;
-using TgGateway.Models;
-using TgGateway.Models.Updates;
+using TgDrive.BotClient.Frontend.Helpers;
+using TgDrive.BotClient.Frontend.Models;
+using TgDrive.Domain.Telegram.Abstractions;
+using TgDrive.Domain.Telegram.Models;
+using TgDrive.Domain.Telegram.Updates;
 
-namespace TgFrontend;
+namespace TgDrive.BotClient.Frontend;
 
 public abstract class MenuBase
 {

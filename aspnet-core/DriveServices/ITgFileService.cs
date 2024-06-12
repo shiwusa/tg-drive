@@ -1,6 +1,6 @@
-﻿using DataTransfer.Objects;
+﻿using TgDrive.Domain.Shared;
 
-namespace DriveServices;
+namespace TgDrive.Domain.Services;
 
 public interface ITgFileService
 {

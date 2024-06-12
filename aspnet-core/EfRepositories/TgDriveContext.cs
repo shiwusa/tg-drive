@@ -1,7 +1,7 @@
-﻿using EfRepositories.Entities;
+﻿using TgDrive.DataAccess.EntityFrameworkCore.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EfRepositories;
+namespace TgDrive.DataAccess.EntityFrameworkCore;
 
 public class TgDriveContext : DbContext
 {

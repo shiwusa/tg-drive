@@ -1,8 +1,7 @@
-﻿using DataTransfer.Objects;
-using System.IO;
-using TgGateway.Abstractions;
+﻿using TgDrive.Domain.Shared;
+using TgDrive.Domain.Telegram.Abstractions;
 
-namespace DriveServices.Implementations;
+namespace TgDrive.Domain.Services.Implementations;
 
 public class TgFileService : ITgFileService
 {

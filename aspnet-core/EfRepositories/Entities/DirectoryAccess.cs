@@ -1,4 +1,4 @@
-﻿namespace EfRepositories.Entities;
+﻿namespace TgDrive.DataAccess.EntityFrameworkCore.Entities;
 
 public class DirectoryAccess
 {

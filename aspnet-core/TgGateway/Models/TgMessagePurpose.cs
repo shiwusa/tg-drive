@@ -1,4 +1,4 @@
-﻿namespace TgGateway.Models;
+﻿namespace TgDrive.Domain.Telegram.Models;
 
 public enum TgMessagePurpose
 {

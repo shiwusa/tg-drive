@@ -1,4 +1,4 @@
-﻿namespace TgFrontend;
+﻿namespace TgDrive.BotClient.Frontend;
 
 [AttributeUsage(AttributeTargets.Method)]
 internal class TgButtonCallbackAttribute : Attribute

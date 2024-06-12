@@ -1,4 +1,6 @@
-﻿namespace TgGateway.Models.Updates;
+﻿using TgDrive.Domain.Telegram.Models;
+
+namespace TgDrive.Domain.Telegram.Updates;
 
 public record TgMessageUpdate(
         TgMessage Message,

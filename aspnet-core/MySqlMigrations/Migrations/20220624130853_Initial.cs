@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MySqlMigrations.Migrations
+namespace TgDrive.DataAccess.MySqlMigrations
 {
     public partial class Initial : Migration
     {

@@ -1,6 +1,4 @@
-﻿using TgGateway.Abstractions;
-
-namespace TgFrontend.Abstractions;
+﻿namespace TgDrive.BotClient.Frontend.Abstractions;
 
 public interface IRedirectHandler
 {

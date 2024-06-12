@@ -1,7 +1,7 @@
-﻿using DataTransfer.Objects;
-using Repositories;
+﻿using TgDrive.Domain.Shared;
+using TgDrive.DataAccess.Shared;
 
-namespace DriveServices.Implementations;
+namespace TgDrive.Domain.Services.Implementations;
 
 public class UserService : IUserService
 {

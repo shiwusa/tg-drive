@@ -1,4 +1,4 @@
-﻿namespace Repositories.Exceptions;
+﻿namespace TgDrive.DataAccess.Shared;
 
 public class EntityNotFoundException : Exception
 {

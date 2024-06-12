@@ -1,6 +1,6 @@
-﻿using DataTransfer.Objects;
+﻿using TgDrive.Domain.Shared;
 
-namespace Repositories;
+namespace TgDrive.DataAccess.Shared;
 
 public interface IUserRepository
 {

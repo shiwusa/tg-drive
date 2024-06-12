@@ -1,9 +1,9 @@
-﻿using EfRepositories;
+﻿using TgDrive.DataAccess.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace ConsoleHost;
+namespace TgDrive.BotClient.Host;
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<TgDriveContext>
 {

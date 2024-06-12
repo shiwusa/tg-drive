@@ -1,4 +1,4 @@
-﻿namespace DriveServices.Messages;
+﻿namespace TgDrive.Messaging.RabbitMQ;
 
 public class FileSentMsg
 {

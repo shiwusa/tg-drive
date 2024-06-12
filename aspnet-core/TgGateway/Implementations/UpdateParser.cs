@@ -1,11 +1,11 @@
 ﻿using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using TgGateway.Abstractions;
-using TgGateway.Models;
-using TgGateway.Models.Updates;
+using TgDrive.Domain.Telegram.Abstractions;
+using TgDrive.Domain.Telegram.Models;
+using TgDrive.Domain.Telegram.Updates;
 
-namespace TgGateway.Implementations;
+namespace TgDrive.Domain.Telegram.Implementations;
 
 public class UpdateParser : IUpdateParser
 {

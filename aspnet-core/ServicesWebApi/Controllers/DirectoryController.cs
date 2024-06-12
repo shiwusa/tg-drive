@@ -1,7 +1,7 @@
-using DataTransfer.Objects;
-using DriveServices;
 using Microsoft.AspNetCore.Mvc;
-using Repositories.Exceptions;
+using TgDrive.Domain.Shared;
+using TgDrive.Domain.Services;
+using TgDrive.DataAccess.Shared;
 
 namespace TgDrive.Web.HttpApi;
 

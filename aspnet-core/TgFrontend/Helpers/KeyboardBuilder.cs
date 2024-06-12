@@ -1,6 +1,6 @@
-﻿using TgGateway.Models;
+﻿using TgDrive.Domain.Telegram.Models;
 
-namespace TgFrontend.Helpers;
+namespace TgDrive.BotClient.Frontend.Helpers;
 
 public static class KeyboardBuilder
 {

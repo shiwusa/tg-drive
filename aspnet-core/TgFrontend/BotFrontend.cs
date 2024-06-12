@@ -1,6 +1,6 @@
-﻿using TgGateway.Abstractions;
+﻿using TgDrive.Domain.Telegram.Abstractions;
 
-namespace TgFrontend;
+namespace TgDrive.BotClient.Frontend;
 
 public class BotFrontend
 {

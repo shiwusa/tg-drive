@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using DriveServices.Implementations;
-using DriveServices;
-using EfRepositories.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using Repositories;
+using TgDrive.Domain.Services.Implementations;
+using TgDrive.Domain.Services;
+using TgDrive.DataAccess.EntityFrameworkCore;
+using TgDrive.DataAccess.Shared;
 
-namespace ServicesExtensions;
+namespace TgDrive.Config.Services;
 public static class FileServiceCollectionExtensions
 {
     public static IServiceCollection AddFileService(this IServiceCollection services)

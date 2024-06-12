@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DataTransfer.Objects;
-using EfRepositories.Entities;
+using TgDrive.Domain.Shared;
+using TgDrive.DataAccess.EntityFrameworkCore.Entities;
 
 namespace TgDrive.Config.AutoMapper;
 

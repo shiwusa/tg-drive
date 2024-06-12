@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataTransfer\TgDrive.DataTransfer.Objects.csproj" />
+    <ProjectReference Include="..\DataTransfer\TgDrive.Domain.Shared.csproj" />
   </ItemGroup>
 
 </Project>

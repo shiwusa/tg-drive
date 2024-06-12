@@ -1,12 +1,11 @@
-﻿using DataTransfer.Objects;
-using DriveServices;
-using Microsoft.Extensions.DependencyInjection;
-using TgFrontend.Abstractions;
-using TgFrontend.Models;
-using TgGateway.Abstractions;
-using TgGateway.Models;
+﻿using TgDrive.Domain.Shared;
+using TgDrive.Domain.Services;
+using TgDrive.BotClient.Frontend.Abstractions;
+using TgDrive.BotClient.Frontend.Models;
+using TgDrive.Domain.Telegram.Abstractions;
+using TgDrive.Domain.Telegram.Models;
 
-namespace TgFrontend.Menus;
+namespace TgDrive.BotClient.Frontend.Menus;
 
 [TgMenu("settings")]
 public class SettingsMenu : MenuBase

@@ -1,4 +1,4 @@
-﻿namespace DataTransfer.Objects;
+﻿namespace TgDrive.Domain.Shared;
 
 public class DirectoryDto
 {

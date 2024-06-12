@@ -1,8 +1,8 @@
-﻿using DataTransfer.Objects;
-using DriveServices.Messages;
+﻿using TgDrive.Domain.Shared;
+using TgDrive.Messaging.RabbitMQ;
 using MassTransit;
 
-namespace DriveServices.EventServices;
+namespace TgDrive.Domain.Services;
 
 public class TgDriveEventService : IConsumer<SendFileMsg>
 {

@@ -1,9 +1,8 @@
-﻿using TgFrontend.Abstractions;
-using TgFrontend.Menus;
-using TgGateway.Abstractions;
-using TgGateway.Models.Updates;
+﻿using TgDrive.BotClient.Frontend.Menus;
+using TgDrive.Domain.Telegram.Abstractions;
+using TgDrive.Domain.Telegram.Updates;
 
-namespace TgFrontend;
+namespace TgDrive.BotClient.Frontend;
 
 public class UpdateHandler : IUpdateHandler
 {

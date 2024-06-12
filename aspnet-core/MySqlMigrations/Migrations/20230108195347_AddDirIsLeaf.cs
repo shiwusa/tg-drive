@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MySqlMigrations.Migrations
+namespace TgDrive.DataAccess.MySqlMigrations
 {
     public partial class AddDirIsLeaf : Migration
     {

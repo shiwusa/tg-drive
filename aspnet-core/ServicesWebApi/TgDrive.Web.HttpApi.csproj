@@ -15,7 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ServicesExtensions\TgDrive.Config.Services.csproj" />
     <ProjectReference Include="..\TgAuth\TgDrive.Web.Auth.csproj" />
-    <ProjectReference Include="..\TgServices.Shared\TgServices.Shared.csproj" />
+    <ProjectReference Include="..\TgServices.Shared\TgDrive.Messaging.RabbitMQ.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,6 @@
-using System.Reflection;
-using DriveServices;
-using DriveServices.Clients;
-using DriveServices.Implementations;
 using MassTransit;
-using ServicesExtensions;
+using TgDrive.Messaging.RabbitMQ;
+using TgDrive.Config.Services;
 using TgDrive.Web.Auth;
 using TgDrive.Web.HttpApi;
 
@@ -40,7 +37,7 @@ var mySqlConnectionStr =
 builder.Services.AddTgDriveContextPool(mySqlConnectionStr!);
 builder.Services.AddFileService();
 builder.Services.AddDirectoryService();
-builder.Services.AddScoped<ITgFileService, TgFileServiceClient>();
+builder.Services.AddScoped<ITgFileServiceClient, TgFileServiceClient>();
 
 const string corsAllowTgDrive = "allowTgDrive";
 builder.Services.AddCors(options =>

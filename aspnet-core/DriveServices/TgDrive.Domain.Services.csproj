@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Repositories\TgDrive.DataAccess.Shared.csproj" />
     <ProjectReference Include="..\TgGateway\TgDrive.Domain.Telegram.csproj" />
-    <ProjectReference Include="..\TgServices.Shared\TgServices.Shared.csproj" />
+    <ProjectReference Include="..\TgServices.Shared\TgDrive.Messaging.RabbitMQ.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace TgGateway.Models.Updates;
+﻿namespace TgDrive.Domain.Telegram.Updates;
 
 public abstract record TgUpdate(
     long SenderId,

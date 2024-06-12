@@ -1,6 +1,6 @@
-﻿using TgGateway.Models;
+﻿using TgDrive.Domain.Telegram.Models;
 
-namespace TgGateway.Abstractions;
+namespace TgDrive.Domain.Telegram.Abstractions;
 
 public interface ITgDriveBotClient
 {

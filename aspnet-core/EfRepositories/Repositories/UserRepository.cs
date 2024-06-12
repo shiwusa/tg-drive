@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using DataTransfer.Objects;
-using EfRepositories.Entities;
+using TgDrive.Domain.Shared;
+using TgDrive.DataAccess.EntityFrameworkCore.Entities;
 using Microsoft.EntityFrameworkCore;
-using Repositories;
+using TgDrive.DataAccess.Shared;
 
-namespace EfRepositories.Repositories;
+namespace TgDrive.DataAccess.EntityFrameworkCore;
 
 public class UserRepository : IUserRepository
 {

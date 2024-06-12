@@ -1,6 +1,6 @@
-﻿using TgGateway.Models;
+﻿using TgDrive.Domain.Telegram.Models;
 
-namespace TgFrontend.Models;
+namespace TgDrive.BotClient.Frontend.Models;
 
 public delegate Task ButtonCallbackHandler(long chatId, IEnumerable<string> parameters);
 

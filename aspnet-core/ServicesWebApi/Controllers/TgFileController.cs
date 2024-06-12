@@ -1,6 +1,5 @@
-﻿using DataTransfer.Objects;
-using DriveServices;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using TgDrive.Messaging.RabbitMQ;
 
 namespace TgDrive.Web.HttpApi;
 
@@ -9,14 +8,14 @@ namespace TgDrive.Web.HttpApi;
 public class TgFileController : TgDriveControllerBase
 {
     private readonly ILogger<TgFileController> _logger;
-    private readonly ITgFileService _tgFileService;
+    private readonly ITgFileServiceClient _tgFileServiceClient;
 
     public TgFileController(
         ILogger<TgFileController> logger,
-        ITgFileService tgFileService)
+        ITgFileServiceClient tgFileServiceClient)
     {
         _logger = logger;
-        _tgFileService = tgFileService;
+        _tgFileServiceClient = tgFileServiceClient;
     }
 
     [HttpPost("SendFile")]
@@ -25,7 +24,7 @@ public class TgFileController : TgDriveControllerBase
     public async Task<ActionResult<long>> SendFile(
         [FromQuery] long fileId)
     {
-        var sentFile = await _tgFileService.SendFile(UserId, fileId, UserId);
+        var sentFile = await _tgFileServiceClient.SendFile(UserId, fileId, UserId);
         return Ok(sentFile);
     }
 
@@ -37,7 +36,7 @@ public class TgFileController : TgDriveControllerBase
         [FromQuery] int? skip = null,
         [FromQuery] int? take = null)
     {
-        var sentFileIds = await _tgFileService.SendFiles(
+        var sentFileIds = await _tgFileServiceClient.SendFiles(
             UserId, directoryId, skip, take);
         if (sentFileIds is null)
         {
@@ -57,7 +56,7 @@ public class TgFileController : TgDriveControllerBase
         [FromQuery] int? skip = null,
         [FromQuery] int? take = null)
     {
-        var sentFileIds = await _tgFileService.SendFilesByName(
+        var sentFileIds = await _tgFileServiceClient.SendFilesByName(
             UserId, name, directoryId, skip, take);
         if (sentFileIds is null)
         {
@@ -77,7 +76,7 @@ public class TgFileController : TgDriveControllerBase
         [FromQuery] int? skip = null,
         [FromQuery] int? take = null)
     {
-        var sentFileIds = await _tgFileService.SendFilesByDescription(
+        var sentFileIds = await _tgFileServiceClient.SendFilesByDescription(
             UserId, description, directoryId, skip, take);
         if (sentFileIds is null)
         {

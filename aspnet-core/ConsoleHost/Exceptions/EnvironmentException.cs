@@ -1,4 +1,4 @@
-﻿namespace ConsoleHost.Exceptions;
+﻿namespace TgDrive.BotClient.Host;
 
 public class EnvironmentException : Exception
 {

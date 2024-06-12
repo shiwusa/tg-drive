@@ -1,8 +1,8 @@
-﻿using EfRepositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TgDrive.DataAccess.EntityFrameworkCore;
 
-namespace ServicesExtensions;
+namespace TgDrive.Config.Services;
 
 public static class ContextServiceCollectionExtensions
 {

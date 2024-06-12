@@ -1,17 +1,14 @@
-﻿using DataTransfer.Objects;
-using DriveServices.Messages;
-using MassTransit;
+﻿using MassTransit;
+using TgDrive.Domain.Shared;
 
-namespace DriveServices.Clients;
+namespace TgDrive.Messaging.RabbitMQ;
 
-public class TgFileServiceClient : ITgFileService
+public class TgFileServiceClient : ITgFileServiceClient
 {
-    private readonly IBus _bus;
     private readonly IRequestClient<SendFileMsg> _sendFileClient;
 
-    public TgFileServiceClient(IBus bus, IRequestClient<SendFileMsg> sendFileClient)
+    public TgFileServiceClient(IRequestClient<SendFileMsg> sendFileClient)
     {
-        _bus = bus;
         _sendFileClient = sendFileClient;
     }
 

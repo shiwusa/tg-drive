@@ -1,25 +1,21 @@
-﻿using System.Reflection;
-using ConsoleHost.Exceptions;
-using DriveServices;
-using DriveServices.EventServices;
-using DriveServices.Implementations;
-using DriveServices.Messages;
-using EfRepositories;
-using EfRepositories.Repositories;
-using LiteDB;
+﻿using LiteDB;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Repositories;
-using ServicesExtensions;
 using Telegram.Bot;
-using TgChatsStorage;
-using TgFrontend;
-using TgFrontend.Abstractions;
-using TgFrontend.Menus;
-using TgGateway.Abstractions;
-using TgGateway.Implementations;
+using TgDrive.BotClient.Frontend;
+using TgDrive.BotClient.Frontend.Abstractions;
+using TgDrive.BotClient.Frontend.Menus;
+using TgDrive.BotClient.Host;
+using TgDrive.CacheStorage.LiteDB;
+using TgDrive.Config.Services;
+using TgDrive.DataAccess.Shared;
+using TgDrive.DataAccess.EntityFrameworkCore;
+using TgDrive.Domain.Services;
+using TgDrive.Domain.Services.Implementations;
+using TgDrive.Domain.Telegram.Abstractions;
+using TgDrive.Domain.Telegram.Implementations;
 
 
 var mySqlConnectionStr = Environment.GetEnvironmentVariable("TGDRIVE_MYSQL_CONNECTION_STRING")

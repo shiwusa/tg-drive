@@ -3,11 +3,11 @@ using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
-using TgGateway.Abstractions;
-using TgGateway.Models;
-using IUpdateHandler = TgGateway.Abstractions.IUpdateHandler;
+using TgDrive.Domain.Telegram.Abstractions;
+using TgDrive.Domain.Telegram.Models;
+using IUpdateHandler = TgDrive.Domain.Telegram.Abstractions.IUpdateHandler;
 
-namespace TgGateway.Implementations;
+namespace TgDrive.Domain.Telegram.Implementations;
 
 public class TgDriveBotClient : ITgDriveBotClient
 {
