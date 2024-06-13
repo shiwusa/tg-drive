@@ -1,6 +1,6 @@
 using MassTransit;
-using TgDrive.Messaging.RabbitMQ;
-using TgDrive.Config.Services;
+using TgDrive.Infrastructure.RabbitMQ;
+using TgDrive.Infrastructure.Services;
 using TgDrive.Web.Auth;
 using TgDrive.Web.HttpApi;
 

@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TgDrive.Config.AutoMapper;
+using TgDrive.Infrastructure.AutoMapper;
 
-namespace TgDrive.Config.Services;
+namespace TgDrive.Infrastructure.Services;
+
 public static class MapperServiceCollectionExtensions
 {
     public static IServiceCollection AddMapper(this IServiceCollection services)

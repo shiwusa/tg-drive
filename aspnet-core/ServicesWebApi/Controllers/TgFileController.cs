@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TgDrive.Messaging.RabbitMQ;
+using TgDrive.Infrastructure.RabbitMQ;
 
 namespace TgDrive.Web.HttpApi;
 

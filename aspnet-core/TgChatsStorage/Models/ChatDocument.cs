@@ -1,7 +1,7 @@
 ﻿using LiteDB;
 using TgDrive.Domain.Telegram.Models;
 
-namespace TgDrive.CacheStorage.LiteDB.Models;
+namespace TgDrive.Infrastructure.LiteDB.Models;
 
 public class ChatDocument
 {

@@ -22,8 +22,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MySqlMigrations\TgDrive.DataAccess.MySqlMigrations.csproj" />
-    <ProjectReference Include="..\ServicesExtensions\TgDrive.Config.Services.csproj" />
-    <ProjectReference Include="..\TgChatsStorage\TgDrive.CacheStorage.LiteDB.csproj" />
+    <ProjectReference Include="..\ServicesExtensions\TgDrive.Infrastructure.ServicesConfig.csproj" />
+    <ProjectReference Include="..\TgChatsStorage\TgDrive.Infrastructure.LiteDB.csproj" />
     <ProjectReference Include="..\TgFrontend\TgDrive.BotClient.Frontend.csproj" />
   </ItemGroup>
 

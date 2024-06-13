@@ -5,7 +5,7 @@ using TgDrive.Domain.Services;
 using TgDrive.DataAccess.EntityFrameworkCore;
 using TgDrive.DataAccess.Shared;
 
-namespace TgDrive.Config.Services;
+namespace TgDrive.Infrastructure.Services;
 public static class FileServiceCollectionExtensions
 {
     public static IServiceCollection AddFileService(this IServiceCollection services)

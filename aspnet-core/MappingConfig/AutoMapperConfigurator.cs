@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace TgDrive.Config.AutoMapper;
+namespace TgDrive.Infrastructure.AutoMapper;
 
 public static class AutoMapperConfigurator
 {

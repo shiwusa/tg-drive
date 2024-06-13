@@ -1,6 +1,6 @@
 ﻿using LiteDB;
 
-namespace TgDrive.CacheStorage.LiteDB.Models;
+namespace TgDrive.Infrastructure.LiteDB.Models;
 
 public class UserDocument
 {

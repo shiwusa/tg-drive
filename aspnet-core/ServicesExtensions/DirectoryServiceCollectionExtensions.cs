@@ -5,7 +5,7 @@ using TgDrive.DataAccess.Shared;
 using TgDrive.Domain.Services;
 using TgDrive.Domain.Services.Implementations;
 
-namespace TgDrive.Config.Services;
+namespace TgDrive.Infrastructure.Services;
 
 public static class DirectoryServiceCollectionExtensions
 {

@@ -1,9 +1,9 @@
 ﻿using LiteDB;
-using TgDrive.CacheStorage.LiteDB.Models;
+using TgDrive.Infrastructure.LiteDB.Models;
 using TgDrive.Domain.Telegram.Abstractions;
 using TgDrive.Domain.Telegram.Models;
 
-namespace TgDrive.CacheStorage.LiteDB;
+namespace TgDrive.Infrastructure.LiteDB;
 
 public class LiteDbMessageStorage : IMessageStorage
 {

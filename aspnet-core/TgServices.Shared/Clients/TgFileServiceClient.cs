@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using TgDrive.Domain.Shared;
 
-namespace TgDrive.Messaging.RabbitMQ;
+namespace TgDrive.Infrastructure.RabbitMQ;
 
 public class TgFileServiceClient : ITgFileServiceClient
 {

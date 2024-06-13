@@ -2,7 +2,7 @@
 using TgDrive.Domain.Shared;
 using TgDrive.DataAccess.EntityFrameworkCore.Entities;
 
-namespace TgDrive.Config.AutoMapper;
+namespace TgDrive.Infrastructure.AutoMapper;
 
 public class EntityToDtoMappingProfile : Profile
 {

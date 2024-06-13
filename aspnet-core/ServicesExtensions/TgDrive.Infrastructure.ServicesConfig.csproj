@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DriveServices\TgDrive.Domain.Services.csproj" />
-    <ProjectReference Include="..\MappingConfig\TgDrive.Config.AutoMapper.csproj" />
+    <ProjectReference Include="..\MappingConfig\TgDrive.Infrastructure.AutoMapper.csproj" />
   </ItemGroup>
 
 </Project>

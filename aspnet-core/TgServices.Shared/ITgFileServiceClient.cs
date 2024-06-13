@@ -1,6 +1,6 @@
 ﻿using TgDrive.Domain.Shared;
 
-namespace TgDrive.Messaging.RabbitMQ;
+namespace TgDrive.Infrastructure.RabbitMQ;
 
 public interface ITgFileServiceClient
 {

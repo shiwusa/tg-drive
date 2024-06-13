@@ -1,5 +1,5 @@
 ﻿using TgDrive.Domain.Shared;
-using TgDrive.Messaging.RabbitMQ;
+using TgDrive.Infrastructure.RabbitMQ;
 using MassTransit;
 
 namespace TgDrive.Domain.Services;

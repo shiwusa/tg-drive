@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using TgDrive.DataAccess.EntityFrameworkCore;
 
-namespace TgDrive.Config.Services;
+namespace TgDrive.Infrastructure.Services;
 
 public static class ContextServiceCollectionExtensions
 {

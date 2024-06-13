@@ -9,17 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.DataAccess.Shared",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.DataAccess.EntityFrameworkCore", "EfRepositories\TgDrive.DataAccess.EntityFrameworkCore.csproj", "{8AAB0C1F-52D1-44C2-B8E4-004D92B7933C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.CacheStorage.LiteDB", "TgChatsStorage\TgDrive.CacheStorage.LiteDB.csproj", "{93A8A565-3650-4206-BE61-F4E73750D5F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Infrastructure.LiteDB", "TgChatsStorage\TgDrive.Infrastructure.LiteDB.csproj", "{93A8A565-3650-4206-BE61-F4E73750D5F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6A977CCA-A304-424C-A93E-8DFDAD42EC35}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Config.AutoMapper", "MappingConfig\TgDrive.Config.AutoMapper.csproj", "{9F88E77E-EE8C-4B87-AA96-ABF998D8C927}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Infrastructure.AutoMapper", "MappingConfig\TgDrive.Infrastructure.AutoMapper.csproj", "{9F88E77E-EE8C-4B87-AA96-ABF998D8C927}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Domain.Shared", "DataTransfer\TgDrive.Domain.Shared.csproj", "{2CD357B0-EDA8-4E9E-9D8B-3DE032AD0E3F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.DataAccess.MySqlMigrations", "MySqlMigrations\TgDrive.DataAccess.MySqlMigrations.csproj", "{A1FAE28F-9910-4D86-B837-3A8E622F0416}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Messaging.RabbitMQ", "TgServices.Shared\TgDrive.Messaging.RabbitMQ.csproj", "{809686E5-AE4A-48A6-9293-CDC663A093E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Infrastructure.RabbitMQ", "TgServices.Shared\TgDrive.Infrastructure.RabbitMQ.csproj", "{809686E5-AE4A-48A6-9293-CDC663A093E5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.BotClient.Frontend", "TgFrontend\TgDrive.BotClient.Frontend.csproj", "{EFDC5D71-77E6-4679-B3B9-640CD1D7942D}"
 EndProject
@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Web.HttpApi", "Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Web.Auth", "TgAuth\TgDrive.Web.Auth.csproj", "{82A8CC19-0F8A-440F-A6C0-849FE12D73CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Config.Services", "ServicesExtensions\TgDrive.Config.Services.csproj", "{D81EB9F2-D793-4EA3-8A40-4F1A4B4496FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Infrastructure.ServicesConfig", "ServicesExtensions\TgDrive.Infrastructure.ServicesConfig.csproj", "{D81EB9F2-D793-4EA3-8A40-4F1A4B4496FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.BotClient.Host", "ConsoleHost\TgDrive.BotClient.Host.csproj", "{5553CB65-8053-4F6C-B798-0BF0BCB7DCAC}"
 EndProject
