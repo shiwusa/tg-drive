@@ -1,11 +1,11 @@
-version: '3.4'
-
+version: '3.9'
+name: tg-drive
 services:
   rabbitmq-bus:
     image: rabbitmq:3.10.7-alpine
-    environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+    container_name: rabbitmq-bus
+    env_file:
+      - path: config/env/rabbitmq.env
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -17,8 +17,9 @@ services:
 
   mysql-db:
     image: mysql:8.0.35
-    environment:
-      - MYSQL_ROOT_PASSWORD=qwerty123!
+    container_name: mysql-db
+    env_file:
+      - path: config/env/mysql.env
     ports:
       - "3306:3306"
     volumes:
@@ -28,30 +29,26 @@ services:
       timeout: 10s
       retries: 10
 
-  tg-drive-host:
+  bot-host:
     build:
       context: aspnet-core
-      dockerfile: ConsoleHost/Dockerfile
-    environment:
-      - TGDRIVE_MYSQL_CONNECTION_STRING=server=mysql-db;user=root;password=qwerty123!;database=tgdrivedb
-      - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
-      - TGDRIVE_BOT_TOKEN=6601174302:AAH1drTsxUXuRoZ1PAmO4hIT68zER4rt3RM
+      dockerfile: BotHost/Dockerfile
+    container_name: bot-host
+    env_file:
+      - path: config/env/tgdrive_host.env
     depends_on:
       rabbitmq-bus:
         condition: service_healthy
       mysql-db:
         condition: service_healthy
 
-  tg-drive-webapi:
+  webapi:
     build:
       context: aspnet-core
       dockerfile: ServicesWebApi/Dockerfile
-    environment:
-      - TGDRIVE_MYSQL_CONNECTION_STRING=server=mysql-db;user=root;password=qwerty123!;database=tgdrivedb
-      - TGDRIVE_LITEDB_CONNECTION_STRING=./tgdrive.db
-      - TGDRIVE_BOT_TOKEN=6601174302:AAH1drTsxUXuRoZ1PAmO4hIT68zER4rt3RM
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=awesomepass
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/tgdrive.pfx
+    container_name: webapi
+    env_file:
+      - path: config/env/tgdrive_webapi.env
     ports:
       - "5050:5050"
       - "5051:5051"
@@ -66,12 +63,15 @@ services:
   angular:
     build:
       context: angular
+      additional_contexts:
+        config: config
+    container_name: angular
     ports:
       - "80:80"
       - "443:443"
     depends_on:
-      - tg-drive-host
-      - tg-drive-webapi
+      - bot-host
+      - webapi
 
 volumes:
   mysqldb:

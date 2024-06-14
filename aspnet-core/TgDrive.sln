@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Web.Auth", "TgAuth\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.Infrastructure.ServicesConfig", "ServicesExtensions\TgDrive.Infrastructure.ServicesConfig.csproj", "{D81EB9F2-D793-4EA3-8A40-4F1A4B4496FC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.BotClient.Host", "ConsoleHost\TgDrive.BotClient.Host.csproj", "{5553CB65-8053-4F6C-B798-0BF0BCB7DCAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgDrive.BotClient.Host", "BotHost\TgDrive.BotClient.Host.csproj", "{5553CB65-8053-4F6C-B798-0BF0BCB7DCAC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BotClient", "BotClient", "{13661E14-49B6-4EC7-98D4-2ACCA5E3B668}"
 EndProject
@@ -40,10 +40,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C6F58060-43DF-45BD-B1B3-8472CC3CED8D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{39C8673E-9EBC-43F0-953A-3DE83AAD5C7D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "z", "z", "{057C33E0-4952-4792-A13E-868080D65147}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "zz", "zz", "{438565FF-D79F-44FC-BD2E-F346E3068E32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

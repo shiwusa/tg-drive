@@ -5,6 +5,6 @@ RUN npm i
 RUN npx ng build --aot
 
 FROM nginx:stable-alpine
-COPY nginx/ /etc/nginx/
+COPY --from=config nginx/ /etc/nginx/
 COPY --from=build /app/dist/tg-drive /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]

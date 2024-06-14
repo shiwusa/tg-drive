@@ -39,7 +39,7 @@ https://core.telegram.org/
 
 https://dev.mysql.com/doc/mysql-getting-started/en/
 
-Next you go forward into ConsoleHost directory and then run the hosting with following command:
+Next you go forward into BotHost directory and then run the hosting with following command:
 
 ```
 $ dotnet run
