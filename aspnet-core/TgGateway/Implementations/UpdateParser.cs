@@ -10,11 +10,11 @@ namespace TgDrive.Domain.Telegram.Implementations;
 public class UpdateParser : IUpdateParser
 {
     private readonly IMessageStorage _storage;
-    private readonly IUpdateHandler _updateHandler;
+    private readonly ITgDriveUpdateHandler _updateHandler;
 
     public UpdateParser(
         IMessageStorage storage,
-        IUpdateHandler updateHandler)
+        ITgDriveUpdateHandler updateHandler)
     {
         _storage = storage;
         _updateHandler = updateHandler;

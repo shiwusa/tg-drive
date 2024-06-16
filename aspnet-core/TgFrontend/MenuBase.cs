@@ -42,20 +42,19 @@ public abstract class MenuBase
 
     protected MessageResponseHandler? GetMessageResponseHandler(string btnId)
     {
-        var methods = GetType()
-            .GetMethods();
+        var methods = GetType().GetMethods();
         var callbackHandlers = methods.Select(m => new
             {
                 msgResponseAttribute = m
                     .GetCustomAttributes(typeof(TgMessageResponseAttribute), false)
                     .Cast<TgMessageResponseAttribute>()
                     .FirstOrDefault(),
-                method = m
+                handlerFn = m
             })
             .Where(x => x.msgResponseAttribute != null);
-        var matchingHandler =
-            callbackHandlers.FirstOrDefault(
-                h => h.msgResponseAttribute!.ButtonId == btnId);
+        
+        var matchingHandler = callbackHandlers
+            .FirstOrDefault(h => h.msgResponseAttribute!.ButtonId == btnId);
         if (matchingHandler == null)
         {
             return null;
@@ -64,26 +63,25 @@ public abstract class MenuBase
         var resultDelegate = (MessageResponseHandler)Delegate.CreateDelegate(
             typeof(MessageResponseHandler),
             this,
-            matchingHandler.method.Name);
+            matchingHandler.handlerFn.Name);
         return resultDelegate;
     }
 
     protected ButtonCallbackHandler? GetButtonCallbackHandler(string btnId)
     {
-        var methods = GetType()
-            .GetMethods();
+        var methods = GetType().GetMethods();
         var callbackHandlers = methods.Select(m => new
             {
                 btnCallbackAttribute = m
                     .GetCustomAttributes(typeof(TgButtonCallbackAttribute), false)
                     .Cast<TgButtonCallbackAttribute>()
                     .FirstOrDefault(),
-                method = m
+                menuMethod = m
             })
             .Where(x => x.btnCallbackAttribute != null);
-        var matchingHandler =
-            callbackHandlers.FirstOrDefault(
-                h => h.btnCallbackAttribute!.ButtonId == btnId);
+        
+        var matchingHandler = callbackHandlers.FirstOrDefault(
+            h => h.btnCallbackAttribute!.ButtonId == btnId);
         if (matchingHandler == null)
         {
             return null;
@@ -92,7 +90,7 @@ public abstract class MenuBase
         var resultDelegate = (ButtonCallbackHandler)Delegate.CreateDelegate(
             typeof(ButtonCallbackHandler),
             this,
-            matchingHandler.method.Name);
+            matchingHandler.menuMethod.Name);
         return resultDelegate;
     }
 

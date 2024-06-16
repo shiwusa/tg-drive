@@ -27,7 +27,7 @@ public class RootMenu : MenuBase
     [TgButtonCallback("as")]
     public async Task MenuBtn_AddSubdir(long chatId, IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Send name of the new directory:");
+        await _botClient.SendText(chatId, "Send a name for a new directory:");
     }
 
     [TgMessageResponse("as")]
@@ -40,7 +40,7 @@ public class RootMenu : MenuBase
         {
             await _botClient.SendText(
                 chatId,
-                "Please, send text message with a name for the new directory");
+                "Please, send text message with a name for a new directory");
             return;
         }
 
@@ -77,7 +77,7 @@ public class RootMenu : MenuBase
     {
         var dirs = await _directoryService.GetRoot(chatId);
         var keyboard = GetKeyboard(dirs);
-        var menu = new MenuData("You are in the root of your storage.", keyboard);
+        var menu = new MenuData("You are in the root of your storage", keyboard);
         await _botClient.SendMenu(chatId, menu);
     }
 }

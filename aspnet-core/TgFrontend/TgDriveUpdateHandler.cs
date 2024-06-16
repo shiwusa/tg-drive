@@ -4,13 +4,13 @@ using TgDrive.Domain.Telegram.Updates;
 
 namespace TgDrive.BotClient.Frontend;
 
-public class UpdateHandler : IUpdateHandler
+public class TgDriveUpdateHandler : ITgDriveUpdateHandler
 {
     private readonly RootMenu _rootMenu;
     private readonly SettingsMenu _settingsMenu;
     private readonly IEnumerable<MenuBase> _menus;
 
-    public UpdateHandler(
+    public TgDriveUpdateHandler(
         RootMenu rootMenu,
         SettingsMenu settingsMenu,
         DirectoryMenu directoryMenu,

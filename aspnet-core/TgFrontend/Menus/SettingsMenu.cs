@@ -27,11 +27,12 @@ public class SettingsMenu : MenuBase
     [TgButtonCallback("set_storage")]
     public async Task MenuBtn_SetStorageChannel(long chatId, IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "You are setting a new storage channel.\n" +
-                                          "Keep in ming that this bot should be added to the channel beforehand.\n" +
-                                          "If you don't want to do that, please return to main menu.\n\n" +
-                                          "Now forward here any message from your new storage channel " +
-                                          "and the channel id will be captured automatically:");
+        await _botClient.SendText(chatId,
+            "You are setting a new storage channel.\n" +
+            "Keep in mind that this bot should be added to the channel beforehand.\n" +
+            "If you don't want to do that, please return to the main menu.\n\n" +
+            "Now forward here any message from your new storage channel " +
+            "and the channel id will be captured automatically:");
     }
 
     [TgMessageResponse("set_storage")]

@@ -5,11 +5,11 @@ namespace TgDrive.BotClient.Frontend;
 public class BotFrontend
 {
     private readonly ITgDriveBotClient _botClient;
-    private readonly IUpdateHandler _updateHandler;
+    private readonly ITgDriveUpdateHandler _updateHandler;
 
     public BotFrontend(
         ITgDriveBotClient botClient,
-        IUpdateHandler updateHandler)
+        ITgDriveUpdateHandler updateHandler)
     {
         _botClient = botClient;
         _updateHandler = updateHandler;

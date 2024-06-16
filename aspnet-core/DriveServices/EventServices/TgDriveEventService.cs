@@ -20,7 +20,7 @@ public class TgDriveEventService : IConsumer<SendFileMsg>
             ErrorMsg = null,
             NewMessageId = 0,
         };
-        
+
         try
         {
             response.NewMessageId = await _tgFileService.SendFile(context.Message.UserId,

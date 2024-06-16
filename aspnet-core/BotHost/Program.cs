@@ -76,7 +76,7 @@ using var host = Host.CreateDefaultBuilder(args)
             .AddSingleton<FileMenu>();
 
         services
-            .AddSingleton<IUpdateHandler, UpdateHandler>()
+            .AddSingleton<ITgDriveUpdateHandler, TgDriveUpdateHandler>()
             .AddSingleton<BotFrontend>();
     })
     .Build();

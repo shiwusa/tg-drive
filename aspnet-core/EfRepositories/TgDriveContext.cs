@@ -22,12 +22,6 @@ public class TgDriveContext : DbContext
             .HasOne(x => x.Directory)
             .WithMany(x => x.Accesses);
         modelBuilder
-            .Entity<UserInfoEntity>()
-            .HasMany(x => x.Directories)
-            .WithOne(x => x.Owner)
-            .HasForeignKey(x => x.OwnerId)
-            .IsRequired();
-        modelBuilder
             .Entity<DirectoryEntity>()
             .HasOne(x => x.Parent)
             .WithMany(x => x.Children)

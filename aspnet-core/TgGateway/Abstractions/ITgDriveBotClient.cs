@@ -4,7 +4,7 @@ namespace TgDrive.Domain.Telegram.Abstractions;
 
 public interface ITgDriveBotClient
 {
-    void StartReceiving(IUpdateHandler handler);
+    void StartReceiving(ITgDriveUpdateHandler handler);
     Task<long> SendMenu(long chatId, MenuData data);
     Task<long> SendTextUnmanaged(long chatId, string text);
     Task<long> SendText(long chatId, string text, long? replyToMsgId = null);

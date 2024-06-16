@@ -5,7 +5,7 @@ using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 using TgDrive.Domain.Telegram.Abstractions;
 using TgDrive.Domain.Telegram.Models;
-using IUpdateHandler = TgDrive.Domain.Telegram.Abstractions.IUpdateHandler;
+using ITgDriveUpdateHandler = TgDrive.Domain.Telegram.Abstractions.ITgDriveUpdateHandler;
 
 namespace TgDrive.Domain.Telegram.Implementations;
 
@@ -20,7 +20,7 @@ public class TgDriveBotClient : ITgDriveBotClient
         _storage = storage;
     }
 
-    public void StartReceiving(IUpdateHandler handler)
+    public void StartReceiving(ITgDriveUpdateHandler handler)
     {
         var updateParser = new UpdateParser(_storage, handler);
         var cts = new CancellationTokenSource();

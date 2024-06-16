@@ -4,6 +4,7 @@ using TgDrive.BotClient.Frontend.Abstractions;
 using TgDrive.BotClient.Frontend.Models;
 using TgDrive.Domain.Telegram.Abstractions;
 using TgDrive.Domain.Telegram.Models;
+using Telegram.Bot.Types;
 
 namespace TgDrive.BotClient.Frontend.Menus;
 
@@ -34,7 +35,7 @@ public class DirectoryMenu : MenuBase
         long chatId,
         IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Send file to add");
+        await _botClient.SendText(chatId, "Send a file to add");
     }
 
     [TgMessageResponse("af")]
@@ -73,10 +74,10 @@ public class DirectoryMenu : MenuBase
         if (addedFile == null)
         {
             await _botClient.SendText(chatId,
-                "An error occured while adding file.\n" +
+                "An error occured while adding a file.\n" +
                 "Please, make sure that the storage channel is configured and this bot is added " +
                 "and has the rights to send messages there.\n\n" +
-                "If you haven't set it up yet, just go to /settings and do it!.");
+                "If you haven't set it up yet, just go to /settings and do it.");
         }
         else
         {
@@ -90,20 +91,20 @@ public class DirectoryMenu : MenuBase
         long chatId,
         IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Enter new directory name:");
+        await _botClient.SendText(chatId, "Enter a new directory name:");
     }
 
     [TgMessageResponse("ren")]
     public async Task RenameDirectory(
-        long chatId,
-        IEnumerable<string> parameters,
-        TgMessage message)
+    long chatId,
+    IEnumerable<string> parameters,
+    TgMessage message)
     {
         if (message.Text == null)
         {
             await _botClient.SendText(
                 chatId,
-                "Please, send text message with new directory name");
+                "Please, send text message with a new directory name");
             return;
         }
 
@@ -137,7 +138,7 @@ public class DirectoryMenu : MenuBase
     [TgButtonCallback("as")]
     public async Task MenuBtn_AddSubdir(long chatId, IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Send name of the new directory:");
+        await _botClient.SendText(chatId, "Send a name of a new directory:");
     }
 
     [TgMessageResponse("as")]
@@ -161,6 +162,24 @@ public class DirectoryMenu : MenuBase
         };
         await _directoryService.AddDirectory(chatId, newDirectory);
         await Open(chatId, parentId);
+    }
+
+    [TgButtonCallback("rm")]
+    public async Task MenuBtn_Remove(long chatId, IEnumerable<string> parameters)
+    {
+        var directoryId = long.Parse(parameters.First());
+        var dir = await _directoryService.Remove(chatId, directoryId);
+
+        if (dir.ParentId == null)
+        {
+            await _redirectHandler.Redirect(chatId, typeof(RootMenu));
+        }
+        else
+        {
+            await Open(chatId, (long)dir.ParentId);
+        }
+
+        await _botClient.SendText(chatId, "Deleted successfully!");
     }
 
     [TgButtonCallback("os")]
@@ -210,6 +229,7 @@ public class DirectoryMenu : MenuBase
         buttons.AddRange(new List<TgMenuButton>
         {
             new("Rename", MenuBtn_RenameDirectory, dir.Id),
+            new("Remove", MenuBtn_Remove, dir.Id),
             //new("Give access", MenuBtn_GiveAccess, dir.Id),
             new("Add subdirectory", MenuBtn_AddSubdir, dir.Id),
             new("Add file", MenuBtn_AddFile, dir.Id)

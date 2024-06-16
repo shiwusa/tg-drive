@@ -33,7 +33,7 @@ public class FileMenu : MenuBase
         long chatId,
         IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Send new description for the file");
+        await _botClient.SendText(chatId, "Send a new description for the file");
     }
 
     [TgMessageResponse("cd")]
@@ -105,8 +105,8 @@ public class FileMenu : MenuBase
     {
         var buttons = new List<TgMenuButton>
         {
-            new("Remove", MenuBtn_Remove, fileId),
             new("Rename", MenuBtn_ChangeName, fileId),
+            new("Remove", MenuBtn_Remove, fileId),
             new("Change description", MenuBtn_ChangeDescription, fileId),
             new("Back", MenuBtn_GoBack, fileId)
         };
