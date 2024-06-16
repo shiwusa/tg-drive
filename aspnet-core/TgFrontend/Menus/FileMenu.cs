@@ -61,7 +61,7 @@ public class FileMenu : MenuBase
         long chatId,
         IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Send new name for the file");
+        await _botClient.SendText(chatId, "Send a changed name for the file");
     }
 
     [TgMessageResponse("cn")]
@@ -118,8 +118,9 @@ public class FileMenu : MenuBase
     {
         var file = await _fileService.GetFile(chatId, fileId);
         var keyboard = GetKeyboard(fileId);
-        string title = $"{file.Name}\n" +
-                       $"{file.Description}";
+        var displayDescription = string.IsNullOrEmpty(file.Description) ? "-" : file.Description;
+        string title = $"Filename: {file.Name}\n\n" +
+                       $"Description: {displayDescription}";
         await _botClient.SendMenu(chatId, new MenuData(title, keyboard));
         await _tgFileService.SendFile(chatId, fileId, chatId);
     }

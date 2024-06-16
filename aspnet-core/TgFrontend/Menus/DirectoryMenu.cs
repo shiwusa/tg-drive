@@ -35,7 +35,7 @@ public class DirectoryMenu : MenuBase
         long chatId,
         IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Send a file to add");
+        await _botClient.SendText(chatId, "Send a new file");
     }
 
     [TgMessageResponse("af")]
@@ -91,7 +91,7 @@ public class DirectoryMenu : MenuBase
         long chatId,
         IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Enter a new directory name:");
+        await _botClient.SendText(chatId, "Change the directory name:");
     }
 
     [TgMessageResponse("ren")]
@@ -138,7 +138,7 @@ public class DirectoryMenu : MenuBase
     [TgButtonCallback("as")]
     public async Task MenuBtn_AddSubdir(long chatId, IEnumerable<string> parameters)
     {
-        await _botClient.SendText(chatId, "Send a name of a new directory:");
+        await _botClient.SendText(chatId, "Give a name for a new directory:");
     }
 
     [TgMessageResponse("as")]
