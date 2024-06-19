@@ -66,39 +66,70 @@ export class FileListComponent implements OnInit, OnChanges {
     };
   }
 
-  onRowEditSave(file: File) {
+  async onRowEditSave(file: File) {
     if (!file.data.name || file.data.name === "") {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
         detail: 'Filename cannot be empty!',
-        sticky: true,
       });
 
       return;
     }
 
     const dto = file.data;
-    Promise.all([
-      this.fileService.changeName(dto.id, dto.name),
-      this.fileService.changeDescription(dto.id, dto.description!)])
-      .then(
-        (file) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'File successfully updated!',
-            sticky: true,
-          });
-        },
-        (error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Update of file was not successful!',
-            sticky: true,
-        });
+    // Promise.all([
+    //   this.fileService.changeName(dto.id, dto.name),
+    //   this.fileService.changeDescription(dto.id, dto.description!)])
+    //   .then(
+    //     (file) => {
+    //       this.messageService.add({
+    //         severity: 'success',
+    //         summary: 'Success',
+    //         detail: 'File successfully updated!',
+    //       });
+    //     },
+    //     (error) => {
+    //       this.messageService.add({
+    //         severity: 'error',
+    //         summary: 'Error',
+    //         detail: 'Update of file was not successful!',
+    //     });
+    //   });
+
+        // const updateSuccsessful = Promise.all([
+    //   this.fileService.changeName(dto.id, dto.name),
+    //   this.fileService.changeDescription(dto.id, dto.description!)])
+    //   .then(
+    //     (file) => {
+    //       this.messageService.add({
+    //         severity: 'success',
+    //         summary: 'Success',
+    //         detail: 'File successfully updated!',
+    //         sticky: true,
+    //       });
+    //     },
+    //     (error) => {
+    //       this.messageService.add({
+    //         severity: 'error',
+    //         summary: 'Error',
+    //         detail: 'Update of file was not successful! Server cannot fulfill your request',
+    //         sticky: true,
+    //     });
+    //   });
+    try {
+      await this.fileService.changeName(dto.id, dto.name);
+      await this.fileService.changeDescription(dto.id, dto.description!)
+      // await updateSuccsessful;
+    } catch (error) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Update of file was not successful! Server cannot fulfill your request',
+        sticky: true,
       });
+      return;
+    }
   }
 
   onRowEditCancel(file: File, rowIndex: number) {
@@ -116,15 +147,13 @@ export class FileListComponent implements OnInit, OnChanges {
               severity: 'success',
               summary: 'Success',
               detail: 'File successfully deleted',
-              sticky: true,
             });
           },
-          (error) => {
+           (error) => {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: 'Update of file was not successful!',
-              sticky: true,
+              detail: 'Remove of file was not successful! Server cannot fulfill your request',
             });
           });
 
@@ -139,7 +168,60 @@ export class FileListComponent implements OnInit, OnChanges {
     });
   }
 
-  onFileUpload(event: Event) {
+  onFileUpload(event: any) {
+    if (!event) {
+      return;
+    }
 
+    const fileList = event.target.files;
+
+    for (let i = 0; i < fileList.length; i++) {
+      const file = fileList.item(i);
+
+      let maxNumber2 = -Infinity;
+      let fileWithMaxNumber2: File = {
+        data: {
+          id: 0,
+          name: '',
+          description: null,
+          addedByUserId: 0,
+          messageId: 0,
+          chatId: 0,
+          readAccessKey: null,
+          directoryId: 0
+        },
+        link: ''
+      };
+      this.files.forEach(uiFile => {
+        let match = uiFile.link.match(/\/(\d+)$/); // Match last sequence of digits
+        if (match) {
+          let number2 = parseInt(match[1]); // Extract the number and parse it
+          if (number2 > maxNumber2) {
+            maxNumber2 = number2;
+            fileWithMaxNumber2 = uiFile;
+          }
+        }
+      });
+
+      this.files.push({
+        data: {
+          name: file.name,
+          id: 0,
+          description: "-",
+          addedByUserId: 0,
+          messageId: 0,
+          chatId: 0,
+          readAccessKey: null,
+          directoryId: 0
+        },
+        link: `${fileWithMaxNumber2.link.replace(/\/\d+$/, '')}/${maxNumber2 + 1}`
+      })
+
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: `Uploaded file: ${file.name}`,
+      });
+    }
   }
 }

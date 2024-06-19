@@ -9,9 +9,16 @@
         <i class="pi pi-folder-open mr-2" style="font-size: 1.5rem"></i>
         {{currentDirectory.name}}
       </div>
-      <p-fileUpload mode="basic" chooseStyleClass="p-button-outlined p-button-rounded"
+      <!-- <p-fileUpload mode="basic"
         chooseIcon="pi pi-upload" (onUpload)="onFileUpload($event)">
-      </p-fileUpload>
+      </p-fileUpload> -->
+      <button type="button" pButton icon="pi pi-upload"
+        pTooltip="Upload file" tooltipPosition="top"
+        class="p-button-sm p-button-outlined p-button-rounded"
+        (click)="fileInput.click()">
+      </button>
+      <input type="file" #fileInput (change)="onFileUpload($event)"
+        multiple hidden>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
@@ -62,10 +69,10 @@
             pTooltip="Delete" tooltipPosition="top"
             class="p-button-danger p-button-sm p-button-text w-1 pr-3 pl-3" (click)="removeFile(file)">
           </button>
-          <button *ngIf="!editing" type="button" pButton icon="pi pi-info-circle"
+          <!-- <button *ngIf="!editing" type="button" pButton icon="pi pi-info-circle"
             pTooltip="File info" tooltipPosition="top"
             class="p-button-info p-button-sm p-button-text w-1 pr-3 pl-3" (click)="sendFile(file)">
-          </button>
+          </button> -->
           <button *ngIf="editing" pButton pRipple type="button"
             pTooltip="Save" tooltipPosition="top"
             pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(file)"

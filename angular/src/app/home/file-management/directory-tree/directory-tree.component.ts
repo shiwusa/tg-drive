@@ -173,7 +173,6 @@ export class DirectoryTreeComponent implements OnInit {
         severity: 'error',
         summary: 'Error',
         detail: 'Directory name cannot be empty',
-        sticky: true,
       });
       return;
     }
@@ -191,15 +190,13 @@ export class DirectoryTreeComponent implements OnInit {
             severity: 'success',
             summary: 'Success',
             detail: 'Directory successfully renamed',
-            sticky: true,
           });
         },
         (error) => {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Update of directory was not successful',
-            sticky: true,
+            detail: 'Directory rename was not successful. Server cannot fulfill your request',
         });
       });
 
@@ -214,7 +211,6 @@ export class DirectoryTreeComponent implements OnInit {
         severity: 'error',
         summary: 'Error',
         detail: 'Directory name cannot be empty',
-        sticky: true,
       });
       return;
     }
@@ -226,7 +222,6 @@ export class DirectoryTreeComponent implements OnInit {
       severity: 'success',
       summary: 'Success',
       detail: `Directory ${dirName} was successfully created`,
-      sticky: true,
     });
     if (!!node.data?.parentNode) {
       this.expandNode(node.data.parentNode);
