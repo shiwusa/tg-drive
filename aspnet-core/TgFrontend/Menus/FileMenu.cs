@@ -46,7 +46,7 @@ public class FileMenu : MenuBase
         {
             await _botClient.SendText(
                 chatId,
-                "Please, send text message with new directory description name");
+                "Please, send text message with a new file description");
             return;
         }
 
